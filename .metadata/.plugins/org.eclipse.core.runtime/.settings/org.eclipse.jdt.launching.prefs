@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1516127737229" defaultVMConnector\="">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="1516127737229" name\="jdk1.8.0_31" path\="\\\\wcdsb.ca\\acs\\APPS\\SDAV\\APPS\\Java8\\jdk1.8.0_31"/>\r\n</vmType>\r\n</vmSettings>\r\n
+=======
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1516127856001" defaultVMConnector\="">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="1516127856001" name\="jdk1.8.0_31" path\="\\\\wcdsb.ca\\acs\\APPS\\SDAV\\APPS\\Java8\\jdk1.8.0_31"/>\r\n</vmType>\r\n</vmSettings>\r\n
+>>>>>>> 68a3aa3718c63c817f0cb21d2fa050afd59588e6

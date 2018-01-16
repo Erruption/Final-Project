@@ -5,7 +5,11 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
 			<item value="G:\workspace\FinalProject\Final Project"/>
+=======
+			<item value="G:\Workspace\Final Project\Final Project"/>
+>>>>>>> 68a3aa3718c63c817f0cb21d2fa050afd59588e6
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
