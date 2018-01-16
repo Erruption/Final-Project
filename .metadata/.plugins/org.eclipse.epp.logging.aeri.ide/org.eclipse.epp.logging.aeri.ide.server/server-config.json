@@ -1,7 +1,11 @@
 {
   "version": "v1",
   "title": "Eclipse",
+<<<<<<< HEAD
   "timestamp": 1515882539877,
+=======
+  "timestamp": 1516060646456,
+>>>>>>> b6bdcf0d482e6b11bacac562cafd9621b2809db4
   "ttl": 10080,
   "helpUrl": "https://dev.eclipse.org/recommenders/community/aeri/v2/help/",
   "feedbackUrl": "https://www.codetrails.com/error-analytics/",
