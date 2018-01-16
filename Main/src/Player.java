@@ -20,7 +20,7 @@ public class Player  extends JFrame{
 	private boolean moveRight;
 	public Player()
 	{
-		JLabel background = new JLabel(new ImageIcon("GREETINGS.jpg")); //creates a background image
+		JLabel background = new JLabel(new ImageIcon("map.png")); //creates a background image
 		setContentPane(background);
 		setTitle("Ghosty Game");
 		setSize(900,900);
@@ -31,10 +31,10 @@ public class Player  extends JFrame{
 		//setContentPane(new JLabel(new ImageIcon("back.jpg")));  //add to frame
 		Container cp = getContentPane();
 		cp.setLayout(null);  //absolute referencing to Jframe
-		ImageIcon ii = new ImageIcon("player.jpeg");
+		ImageIcon ii = new ImageIcon("player.jpg");
 		player = new JLabel (ii);
-		player.setSize(200,200);
-		player.setLocation(100,100);
+		player.setSize(100,100);
+		player.setLocation(200,200);
 		cp.add (player);
 		
 		t = new Timer(20, new actTimer()); //define ghost movement at 200ms interval
