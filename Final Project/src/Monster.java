@@ -1,3 +1,4 @@
+/*
 import javax.swing.JLabel;
 
 public class Monster {
@@ -39,3 +40,4 @@ public class Monster {
 
 
 }
+*/
