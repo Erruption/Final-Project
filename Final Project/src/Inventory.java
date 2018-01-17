@@ -6,7 +6,7 @@ public class Inventory extends JFrame{
 	public Inventory(){
 		super();
 		
-		JLabel background = new JLabel(new ImageIcon("inventory-grid.png"));
+		JLabel background = new JLabel(new ImageIcon("Resources/inventory-grid.png"));
 		setContentPane(background);
 		Container Pane = getContentPane();
 		Pane.setLayout(null);
