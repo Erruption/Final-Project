@@ -1211,3 +1211,60 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.core 4 0 2018-01-17 09:02:59.718
+!MESSAGE An exception occurred during push on URI https://github.com/Erruption/Final-Project: Nothing to push.
+!STACK 0
+org.eclipse.jgit.errors.TransportException: Nothing to push.
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1298)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:166)
+	at org.eclipse.egit.ui.internal.push.SimpleConfigurePushDialog.dryRun(SimpleConfigurePushDialog.java:320)
+	at org.eclipse.egit.ui.internal.dialogs.AbstractConfigureRemoteDialog.lambda$7(AbstractConfigureRemoteDialog.java:509)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.egit.core 4 0 2018-01-17 09:03:50.376
+!MESSAGE An exception occurred during push on URI https://github.com/Erruption/Final-Project: Nothing to push.
+!STACK 0
+org.eclipse.jgit.errors.TransportException: Nothing to push.
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1298)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:166)
+	at org.eclipse.egit.ui.internal.push.SimpleConfigurePushDialog.dryRun(SimpleConfigurePushDialog.java:320)
+	at org.eclipse.egit.ui.internal.dialogs.AbstractConfigureRemoteDialog.lambda$7(AbstractConfigureRemoteDialog.java:509)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.egit.core 4 0 2018-01-17 09:07:27.678
+!MESSAGE An exception occurred during push on URI https://github.com/Erruption/Final-Project: Nothing to push.
+!STACK 0
+org.eclipse.jgit.errors.TransportException: Nothing to push.
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1298)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:166)
+	at org.eclipse.egit.ui.internal.push.SimpleConfigurePushDialog.dryRun(SimpleConfigurePushDialog.java:320)
+	at org.eclipse.egit.ui.internal.dialogs.AbstractConfigureRemoteDialog.lambda$7(AbstractConfigureRemoteDialog.java:509)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.egit.core 4 0 2018-01-17 09:09:22.233
+!MESSAGE An exception occurred during push on URI https://github.com/Erruption/Final-Project: Nothing to push.
+!STACK 0
+org.eclipse.jgit.errors.TransportException: Nothing to push.
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1298)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:166)
+	at org.eclipse.egit.ui.internal.push.SimpleConfigurePushDialog.dryRun(SimpleConfigurePushDialog.java:320)
+	at org.eclipse.egit.ui.internal.dialogs.AbstractConfigureRemoteDialog.lambda$7(AbstractConfigureRemoteDialog.java:509)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.egit.core 4 0 2018-01-17 09:10:41.390
+!MESSAGE An exception occurred during push on URI https://github.com/Erruption/Final-Project: Nothing to push.
+!STACK 0
+org.eclipse.jgit.errors.TransportException: Nothing to push.
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1298)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:189)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:84)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:57)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.egit.ui 4 0 2018-01-17 09:10:41.404
+!MESSAGE Can't connect to any repository: https://github.com/Erruption/Final-Project (Nothing to push.)
