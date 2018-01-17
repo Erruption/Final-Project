@@ -22,8 +22,8 @@ public class GUI  extends JFrame{
 	{
 		JLabel background = new JLabel(new ImageIcon("map.png")); //creates a background image
 		setContentPane(background);
-		setTitle("");
-		setSize(900,900);
+		setTitle("SMOEBODIE TUCH MY SPAGUETTE");
+		setSize(700,700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
@@ -33,13 +33,14 @@ public class GUI  extends JFrame{
 		cp.setLayout(null);  //absolute referencing to Jframe
 		ImageIcon ii = new ImageIcon("player.jpg");
 		player = new JLabel (ii);
-		player.setSize(100,100);
+		player.setSize(10,10);
 		player.setLocation(200,200);
 		cp.add (player);
 		
 		t = new Timer(20, new actTimer()); //define ghost movement at 200ms interval
 		t.start(); //start timer
 		setVisible (true);
+		
 	}
 /**
  * a timer to work 
