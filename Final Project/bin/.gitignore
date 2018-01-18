@@ -8,3 +8,5 @@
 /Menu.class
 /Player.class
 /Projectile.class
+/Tile.class
+/Inventory$btnListener.class

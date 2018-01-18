@@ -20,7 +20,7 @@ public class GUI  extends JFrame{
 	private boolean moveRight;
 	public GUI()
 	{
-		JLabel background = new JLabel(new ImageIcon("Resources/map.png")); //creates a background image
+		//JLabel background = new JLabel(new ImageIcon("Resources/map.png")); //creates a background image
 		setTitle("SMOEBODIE TUCH MY SPAGUETTE");
 		setSize(1000,1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +31,12 @@ public class GUI  extends JFrame{
 		Container cp = getContentPane();
 		cp.setLayout(null);  //absolute referencing to Jframe
 		
+		
+		ImageIcon im = new ImageIcon("Resources/map.jpg");
+		player = new JLabel (im);
+		player.setSize(100,100);
+		player.setLocation(450,400);
+		cp.add (player);
 		
 		
 		ImageIcon ii = new ImageIcon("Resources/player.jpg");
