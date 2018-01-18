@@ -1,4 +1,6 @@
 
+import java.awt.Container;
+
 //public class Menu {
 	//MAKE THIS NEW MAIN SO IT STARTS BEFORE GUI DOES
 	import javax.swing.*;
@@ -19,7 +21,7 @@
 			Start.setActionCommand("Start");
 			JButton Exit = new JButton("Exit");
 			Exit.setActionCommand("Exit");
-			start.setBounds(100, 300, 20, 20);
+			Start.setBounds(100, 300, 20, 20);
 			exit.setBounds(300, 300, 20, 20);
 			add(start);
 			add(exit);
