@@ -29,6 +29,9 @@ private static final long serialVersionUID = 1L ;
 	public static final int HEIGHT = 900;
 	final static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
 	
+	Tile tileTest = new Tile(0 , 0 , this);
+	
+	
 	public void run() {
 		while(running) {
 			tick();
@@ -73,7 +76,7 @@ private static final long serialVersionUID = 1L ;
 	}
 
 	public void tick() {
-		
+		tileTest.tick(this);
 		
 	}
 	
@@ -90,6 +93,8 @@ private static final long serialVersionUID = 1L ;
 	Graphics g = buffStrat.getDrawGraphics();
 	
 	g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+	
+	tileTest.render(g);
 	
 	g.dispose();
 	buffStrat.show();
