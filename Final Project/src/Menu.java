@@ -22,13 +22,13 @@ import java.awt.Container;
 			JButton Exit = new JButton("Exit");
 			Exit.setActionCommand("Exit");
 			Start.setBounds(100, 300, 20, 20);
-			exit.setBounds(300, 300, 20, 20);
-			add(start);
-			add(exit);
+			Exit.setBounds(300, 300, 20, 20);
+			add(Start);
+			add(Exit);
 			setVisible (true);
 
 		}
-
+/*
 		public void actionPerformed(ActionEvent e) {
 			if ("Exit".equals(e.getActionCommand())) {
 				System.exit();
@@ -42,5 +42,5 @@ import java.awt.Container;
 				new Menu();
 			}
 		}
-
+*/
 	}
