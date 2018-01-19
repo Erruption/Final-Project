@@ -27,7 +27,7 @@ private static final long serialVersionUID = 1L ;
 	public static final String TITLE = "OMAE WA";
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
-	final static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
+	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
 	
 	Tile tileTest = new Tile(0 , 0 , this);
 	
