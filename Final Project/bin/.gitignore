@@ -1,3 +1,7 @@
+/.project
+/Boss.class
+/GUI.class
+/HealthBars.class
 /Inventory$btnListener.class
 /Inventory.class
 /Menu.class
@@ -5,3 +9,4 @@
 /Projectile.class
 /TestLauncher.class
 /Tile.class
+/Game.class
