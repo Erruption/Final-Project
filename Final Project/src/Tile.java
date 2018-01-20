@@ -35,7 +35,7 @@ public class Tile {
 		g.fillRect(x, y, 32, 32);
 		
 		g.setColor(Color.BLACK);
-		g.drawRect(x, y, 31, 31);
+		//g.drawRect(x, y, 31, 31);
 	}
 
 }

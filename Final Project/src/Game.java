@@ -39,11 +39,17 @@ public class Game extends Canvas implements Runnable{
 	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
 
 	
-	//set tile specifications
-	public int tileWidth = WIDTH/32+2;
-	public int tileHeight = HEIGHT/32+2;
+	//dim in tiles
+	public int tileWidth = (WIDTH/32+2);
+	public int tileHeight = (HEIGHT/32+2);
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
+	
+	//Key Controls
+	boolean left, right, up, down;
+	
+	
+	
 
 	/**
 	 * while running tick and render frames
@@ -87,7 +93,7 @@ public class Game extends Canvas implements Runnable{
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack(); //sets preferred size 
-		frame.setResizable(false); //disallows user to resize
+		frame.setResizable(true); //disallows user to resize
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true); //allows user to see
 
