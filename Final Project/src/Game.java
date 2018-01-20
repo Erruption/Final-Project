@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable{
 	public int tileWidth = WIDTH/32+2;
 	public int tileHeight = HEIGHT/32+2;
 
-	Tile tileArray[][] = new Tile[tileWidth][tileHeight];
+	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
 	/**
 	 * while running tick and render frames
