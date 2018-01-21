@@ -1,7 +1,8 @@
 /.project
 /Boss.class
-/GUI.class
+/Game.class
 /HealthBars.class
+/InputHandler.class
 /Inventory$btnListener.class
 /Inventory.class
 /Menu.class
@@ -9,5 +10,5 @@
 /Projectile.class
 /TestLauncher.class
 /Tile.class
-/Game.class
-/InputHandler.class
+/ItemPickups.class
+/ItemPickup.class

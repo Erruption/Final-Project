@@ -16,18 +16,18 @@ public class Inventory extends JFrame{
 
 		super();
 
-		//JLabel background = new JLabel(new ImageIcon("Resources/inventory-grid.png"));
-		//setContentPane(background);
+		JLabel background = new JLabel(new ImageIcon("Resources/inventory-grid.png"));
+		setContentPane(background);
 		Container Pane = getContentPane();
 		Pane.setLayout(null);
-
+		
 		//Frame
 		setTitle("Inventory");
 		setSize(517,328);
 		setResizable(false);
 		setLocation(200,200);
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-
+		
 		//Resume Button (Resumes Game)
 		JButton btnResume = new JButton("Resume");
 		btnResume.setBounds(7, 231, 244, 60);
@@ -44,18 +44,39 @@ public class Inventory extends JFrame{
 		btnQuit.setActionCommand("Quit");
 		Pane.add(btnQuit);
 
+		//Adds all images to an array
 		itemImages[0] = new ImageIcon();
 		itemImages[1] = new ImageIcon("Resources/Item-1-Damage.png");
-		itemImages[2] = new ImageIcon();
-		itemImages[3] = new ImageIcon();
-		itemImages[4] = new ImageIcon();
-		
-		//test----------------------------
-		refreshInventory();
-		
+		itemImages[2] = new ImageIcon("Resources/Item-2-Speed.png");
+		itemImages[3] = new ImageIcon("Resources/Item-3-Resistance.png");
+		itemImages[4] = new ImageIcon("Resources/Item-4-FireRate.png");
+
+		//Builds icons for each slot in the inventory
+		for(int x = 0; x < 10; x++){
+
+			itemLabels[x] = new JLabel();
+
+			//Positions each icon properly on the background
+			if(x < 5){
+				itemLabels[x].setBounds( 23 + (x * 98), 23, 70,70);
+			} else {
+				itemLabels[x].setBounds( 23 + ((x - 5) * 98) , 122, 70,70);
+			}
+
+			if(items[x] != 0){
+				itemLabels[x].setIcon(itemImages[items[x]]);
+			}
+
+			Pane.add(itemLabels[x]);
+			itemLabels[x].setVisible(true);
+
+		}
+
 		setVisible(true);
 
 	}
+
+
 
 	/**
 	 * Adds an item to the first open inventory spot
@@ -74,28 +95,19 @@ public class Inventory extends JFrame{
 		}
 	}
 
-	public void refreshInventory(){
+	/**
+	 * Refreshed the JLabels to show acquired items
+	 */
+	public void refreshIcons(){
 
 		for(int x = 0; x < 10; x++){
-			
-			//test---------------------------
-			items[x] = 1;
-			
-			itemLabels[x] = new JLabel();
-			
-			if(x < 5){
-				itemLabels[x].setBounds( 20 + (x * 50), 20, 70,70);
-			} else {
-				itemLabels[x].setBounds( 20 + ((x - 5) * 50) , 120, 70,70);
-			}
-			
+
+			//Checks for an item in the array
 			if(items[x] != 0){
-					itemLabels[x].setIcon(itemImages[items[x]]);
+				
+				//Adds the items image to its corresponding JLabel
+				itemLabels[x].setIcon(itemImages[items[x]]);
 			}
-			
-			Pane.add //------------
-			itemLabels[x].setVisible(true);
-			
 		}
 	}
 
