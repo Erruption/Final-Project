@@ -25,6 +25,8 @@ public class Game extends Canvas implements Runnable{
 
 	InputHandler IH = new InputHandler();
 
+	Player player = new Player(0, 0, this);
+
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	JFrame frame;
@@ -37,11 +39,11 @@ public class Game extends Canvas implements Runnable{
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
-
+	Thread thread;
 
 	//dim in tiles
-	public int tileWidth = (WIDTH/32+2);
-	public int tileHeight = (HEIGHT/32+2);
+	public int tileWidth = 150;
+	public int tileHeight = 150;
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
@@ -58,25 +60,44 @@ public class Game extends Canvas implements Runnable{
 		while(running) {
 			tick();
 			render();
+
+			try {
+				Thread.sleep(5); //slows ticks to milliseconds
+
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
-
 
 	/**
 	 * sets run to true and starts the thread
 	 */
 	public synchronized void start() {
 		running = true;
-		Thread thread = new Thread(this);
+		thread = new Thread(this);
 		thread.start();
 
 	}
+
+	/**
+	 * toggle pause game
+	 */
+	public synchronized static void pause() {
+		if (running == true){
+			running = false;	
+		}else {
+		}
+	}
+
+
 	/**
 	 * sets run to false
 	 */
-	public synchronized void stop() {
+	public synchronized static void stop() {
 
 		running = false;
+		System.exit(0);
 
 	}
 
@@ -114,7 +135,7 @@ public class Game extends Canvas implements Runnable{
 	private void init() {
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
-				tileArray[x][y] =new Tile(x * tileWidth, y * tileHeight, this);
+				tileArray[x][y] =new Tile(x * 32, y * 32, this);
 			}
 		}
 	}
@@ -134,20 +155,21 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 		moveMap();
+		player.tick(this);
 	}
 
 	private void moveMap() {
 		if(left) {
-			xOffset--;
-		}
-		if(right) {
 			xOffset++;
 		}
+		if(right) {
+			xOffset--;
+		}
 		if(up) {
-			yOffset--;
+			yOffset++;
 		}
 		if(down) {
-			yOffset++;
+			yOffset--;
 		}
 	}
 
@@ -174,14 +196,20 @@ public class Game extends Canvas implements Runnable{
 
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
-
-		for (int x = 0 ; x < tileWidth; x++) {
-			for (int y = 0 ; y< tileHeight; y++) { 
-				tileArray[x][y].render(g);
+		//checks if the tile will be on screen and only renders if it will
+		for (int x = 0 ; x < tileWidth; x++) { //for width of the screen
+			for (int y = 0 ; y< tileHeight; y++) { //for height of the screen
+				if (tileArray[x][y].x >= 0 - 32 && //if within left side of the screen
+						tileArray[x][y].x <= getWidth() & //if within right side of the screen
+						tileArray[x][y].y>= 0 - 32  && //if within the top of the screen
+						tileArray[x][y].y <= getHeight() + 32 //if within the bottom of the screen
+						){		
+					tileArray[x][y].render(g);//render the tile if on screen
+				}
 			}
 		}
 
-
+		player.render(g);
 
 		g.dispose();
 		buffStrat.show();

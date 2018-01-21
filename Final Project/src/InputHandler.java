@@ -7,7 +7,7 @@ public class InputHandler implements KeyListener {
 
 		int KeyCode = e.getKeyCode();
 
-
+//basic controls for game
 		if(KeyCode == e.VK_A) {
 			Game.left = true;
 		}
@@ -20,6 +20,14 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_W) {
 			Game.up = true;
 		}
+		
+		
+		//pulling up the menu
+		if(KeyCode == e.VK_ESCAPE) {
+			Game.pause();
+		}
+		
+		
 	}
 
 	public void keyReleased(KeyEvent e) {

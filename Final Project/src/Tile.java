@@ -30,14 +30,18 @@ public class Tile {
 		
 	}
 	
-	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
+	public void render(Graphics g) { 
+		
+		
+		g.setColor(Color.GREEN);
 		g.fillRect(x, y, 32, 32);
 		
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, 31, 31);
+		}
+		
 	}
 
-}
+
 
 
