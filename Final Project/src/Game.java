@@ -32,10 +32,13 @@ public class Game extends Canvas implements Runnable{
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
+	
+	static BufferedImage gTile = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
+
 	JFrame frame;
-	
-	
-	
+
+
+
 	public static boolean running = false;
 
 
@@ -52,9 +55,8 @@ public class Game extends Canvas implements Runnable{
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
-	BufferedImage gTile;
 	
-	
+
 	//Key Controls
 	public static boolean left, right, up, down;
 
@@ -82,7 +84,7 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to true and starts the thread
 	 */
 	public synchronized void start() {
-		
+
 		running = true;
 		thread = new Thread(this);
 		thread.start();
@@ -105,15 +107,15 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to false
 	 */
 	public synchronized static void stop() {
-		
+
 		running = false;
 		//Make this close the game and not the entire application
 		System.exit(0);
 
 	}
-	
-	
-	
+
+
+
 
 	public Game() {
 
@@ -136,7 +138,7 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(IH);
 
 
-		
+
 		init(); 
 
 		requestFocus();
@@ -148,16 +150,23 @@ public class Game extends Canvas implements Runnable{
 	 * initiates the screen placements by rendering all tiles on screen
 	 */
 	private void init() {
-		
-		
-		
+		BufferedImage gTile = null;
+		try {
+			gTile = ImageIO.read(new File("Resources/TileSet/GrassTile.jpg"));
+			System.out.println("the gtiles are being initialized");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("gtiles found");
+
+
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
-				tileArray[x][y] =new Tile(x * 32, y * 32, this);
+				tileArray[x][y] = new Tile(x * 32, y * 32, this);
 			}
 		}
 	}
-
 
 
 	/**

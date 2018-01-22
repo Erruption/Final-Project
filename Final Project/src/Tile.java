@@ -15,52 +15,44 @@ public class Tile {
 	int x, y; //display x and y values
 	int oX, oY; //original x and y values
 
-	
-	
+
+
 	Game game;
 
 
 
 
-public Tile(int x, int y, Game game) {
-	this.oX = x;
-	this.oY = y;
+	public Tile(int x, int y, Game game) {
+		this.oX = x;
+		this.oY = y;
 
-	this.game = game;
-
-
-
-}
-
-public void tick(Game game){
-	this.game=game;
-
-	x = oX + game.xOffset;
-	y = oY + game.yOffset;
+		this.game = game;
 
 
-}
 
-public void render(Graphics g) { 
-
-	
-	BufferedImage gTile = null;
-	try {
-		gTile = ImageIO.read(new File("Resources/TileSet/GrassTile.jpg"));
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
 	}
 
-	g.drawImage( gTile,  x, y, null);
+	public void tick(Game game){
+		this.game=game;
+
+		x = oX + game.xOffset;
+		y = oY + game.yOffset;
 
 
-	//g.setColor(Color.GREEN);
-	//g.fillRect(x, y, 32, 32);
+	}
 
-	g.setColor(Color.BLACK);
-	g.drawRect(x, y, 31, 31);
-}
+	public void render(Graphics g) { 
+
+
+		g.drawImage(Game.gTile,  x, y, null);
+		//System.out.println("yeet");
+
+		//g.setColor(Color.GREEN);
+		//g.fillRect(x, y, 32, 32);
+
+		g.setColor(Color.WHITE);
+		g.drawRect(x, y, 31, 31);
+	}
 
 }
 
