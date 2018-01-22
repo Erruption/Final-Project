@@ -11,10 +11,15 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 public class Menu extends JFrame{
 	
+	//Static variables for referencing from other classes
+	public static Game G;
+	public static Menu M;
+	public static Inventory I;
+	
 	public Menu () {
-		//Setting the backgroud (*not working atm because need good background in resource folder)
+		//Setting the background (*not working atm because need good background in resource folder)
 		JLabel background = new JLabel(new ImageIcon("map.png"));
-		//general setting up of Jframe
+		//general setting up of JFrame
 		setContentPane(background);
 		setTitle("Game");
 		setSize(400,400);
@@ -40,6 +45,8 @@ public class Menu extends JFrame{
 		setVisible (true);
 
 	}
+	
+	
 	private class btnListener implements ActionListener //implements the Start and Exit buttons
 	{
 		public void actionPerformed(ActionEvent e) { //closes entire program
@@ -47,16 +54,17 @@ public class Menu extends JFrame{
 				System.exit(0);
 			}
 			if ("Start".equals(e.getActionCommand())) { //disposes of current Menu class and Loads the GUI class
-				dispose();
-				new Game().start();
-
+				M.setVisible(false);
+				G = new Game();
+				I = new Inventory();
+				G.start();
 
 			}
 		}	
 
 	}
 	public static void main(String args[]){
-		new Menu();
+		M = new Menu();
 
 	}
 }
