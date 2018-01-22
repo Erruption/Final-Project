@@ -22,7 +22,7 @@ import java.awt.event.KeyListener;
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
 
-	//offset for dispay of objects
+	//offset for display of objects
 	int xOffset = 0;
 	int yOffset = 0;
 
@@ -33,7 +33,9 @@ public class Game extends Canvas implements Runnable{
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	JFrame frame;
-
+	
+	
+	
 	public static boolean running = false;
 
 
@@ -92,6 +94,7 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public synchronized static void pause() {
 		if (running == true){
+			Menu.I.setVisible(true);
 			running = false;	
 		}else {
 		}
@@ -102,11 +105,15 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to false
 	 */
 	public synchronized static void stop() {
-
+		
 		running = false;
+		//Make this close the game and not the entire application
 		System.exit(0);
 
 	}
+	
+	
+	
 
 	public Game() {
 

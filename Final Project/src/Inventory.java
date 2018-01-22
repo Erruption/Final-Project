@@ -5,6 +5,10 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * Nick Agnew
+ *GUI serving as pause menu and visual representation of Upgrades
+ */
 public class Inventory extends JFrame{
 
 	//Stores Values representing items in inventory
@@ -12,7 +16,7 @@ public class Inventory extends JFrame{
 	private JLabel[] itemLabels = new JLabel[10];
 	private ImageIcon[] itemImages = new ImageIcon[5];
 
-	private Inventory(){
+	public Inventory(){
 
 		super();
 
@@ -26,7 +30,7 @@ public class Inventory extends JFrame{
 		setSize(517,328);
 		setResizable(false);
 		setLocation(200,200);
-		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation (JFrame.DO_NOTHING_ON_CLOSE);
 		
 		//Resume Button (Resumes Game)
 		JButton btnResume = new JButton("Resume");
@@ -36,7 +40,7 @@ public class Inventory extends JFrame{
 		btnResume.setActionCommand("Resume");
 		Pane.add(btnResume);
 
-		//Quit Button (Return to main menu) not implemented
+		//Quit Button (Return to main menu)
 		JButton btnQuit = new JButton("Return to Menu");
 		btnQuit.setBounds(262, 231, 240, 60);
 		btnQuit.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -63,6 +67,7 @@ public class Inventory extends JFrame{
 				itemLabels[x].setBounds( 23 + ((x - 5) * 98) , 122, 70,70);
 			}
 
+			//Adds proper images to JLabels
 			if(items[x] != 0){
 				itemLabels[x].setIcon(itemImages[items[x]]);
 			}
@@ -72,7 +77,7 @@ public class Inventory extends JFrame{
 
 		}
 
-		setVisible(true);
+		setVisible(false);
 
 	}
 
@@ -116,18 +121,16 @@ public class Inventory extends JFrame{
 		public void actionPerformed (ActionEvent e){
 
 			if (e.getActionCommand().equals("Resume")){ //Checks for an action from btnResume
-
-
+				Menu.G.start();
+				setVisible(false);
 			}
 			else if (e.getActionCommand().equals("Quit")) { //Checks for an action from btnQuit
-
-
+				Menu.M.setVisible(true);
+				//Menu.G.stop();
+				Menu.I.dispose();
+				
 			}
 		}
 	}
 
-	//testing purposes only
-	public static void main (String [] args){
-		new Inventory();
-	}
 }

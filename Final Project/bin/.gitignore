@@ -6,6 +6,10 @@
 /Inventory$btnListener.class
 /Inventory.class
 /ItemPickup.class
+<<<<<<< HEAD
+=======
+/Menu$btnListener.class
+>>>>>>> 418c72c6ad253f892a837f8ea734be17a2737358
 /Menu.class
 /Player.class
 /Projectile.class
