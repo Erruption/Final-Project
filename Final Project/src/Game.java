@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -5,6 +6,8 @@ import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -47,6 +50,9 @@ public class Game extends Canvas implements Runnable{
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
+	BufferedImage gTile;
+	
+	
 	//Key Controls
 	public static boolean left, right, up, down;
 
@@ -74,6 +80,7 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to true and starts the thread
 	 */
 	public synchronized void start() {
+		
 		running = true;
 		thread = new Thread(this);
 		thread.start();
@@ -122,6 +129,7 @@ public class Game extends Canvas implements Runnable{
 		this.addKeyListener(IH);
 
 
+		
 		init(); 
 
 		requestFocus();
@@ -133,6 +141,9 @@ public class Game extends Canvas implements Runnable{
 	 * initiates the screen placements by rendering all tiles on screen
 	 */
 	private void init() {
+		
+		
+		
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y] =new Tile(x * 32, y * 32, this);
