@@ -32,12 +32,11 @@ public class Game extends Canvas implements Runnable{
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-
 	static BufferedImage gTile = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
 
 	JFrame frame;
 
-
+	private ItemPickup[] Pickups = new ItemPickup[10];
 
 	public static boolean running = false;
 
@@ -183,6 +182,13 @@ public class Game extends Canvas implements Runnable{
 		}
 		moveMap();
 		player.tick(this);
+		
+		for(int x = 0;x < 10; x++){
+			if(Pickups[x].collidesWithItem(player.getBounds())){
+				Menu.I.addItem(Pickups[x].type);
+				Pickups[x] = null;
+			}
+		}
 	}
 
 	private void moveMap() {

@@ -5,7 +5,7 @@ import javax.swing.*;
 public class ItemPickup extends JLabel {
 	
 	private ImageIcon[] itemImages = new ImageIcon[5];
-	private int type;
+	public int type;
 	
 	/**
 	 * Constructs an item pickup at location x

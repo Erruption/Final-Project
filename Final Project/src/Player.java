@@ -1,6 +1,6 @@
 import java.awt.Color;
-
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +44,10 @@ public class Player{
 
 
 
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x,y,32,32);
 	}
 
 
