@@ -26,6 +26,7 @@ public class ItemPickup extends JLabel {
 		setSize(70,70);
 		setLocation(x);
 		setIcon(itemImages[type]);
+		setVisible(true);
 	}
 	
 	/**

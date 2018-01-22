@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -36,7 +37,9 @@ public class Game extends Canvas implements Runnable{
 
 	JFrame frame;
 
-	private ItemPickup[] Pickups = new ItemPickup[10];
+	//Storage for Pickups
+	private ArrayList<ItemPickup> Pickups = new ArrayList<ItemPickup>();
+
 
 	public static boolean running = false;
 
@@ -142,7 +145,6 @@ public class Game extends Canvas implements Runnable{
 
 		requestFocus();
 
-
 	}
 
 	/**
@@ -183,11 +185,13 @@ public class Game extends Canvas implements Runnable{
 		moveMap();
 		player.tick(this);
 		
-		for(int x = 0;x < 10; x++){
-			if(Pickups[x].collidesWithItem(player.getBounds())){
-				Menu.I.addItem(Pickups[x].type);
-				Pickups[x] = null;
-			}
+		//Checks for collision and picks up items
+		for(int x = 0;x < Pickups.size(); x++){
+				if(Pickups.get(x).collidesWithItem(new Rectangle((WIDTH / 2 ) - 16,(HEIGHT / 2 ) - 16, 32,32))){
+				Menu.I.addItem(Pickups.get(x).type);
+				Pickups.set(x, null);
+				Pickups.remove(x);
+				}
 		}
 	}
 
