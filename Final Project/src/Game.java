@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable{
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-	
+
 	static BufferedImage gTile = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
 
 	JFrame frame;
@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable{
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
-	
+
 
 	//Key Controls
 	public static boolean left, right, up, down;
@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable{
 			render();
 
 			try {
-				Thread.sleep(5); //slows ticks to milliseconds
+				Thread.sleep(10); //slows ticks to milliseconds
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -212,7 +212,7 @@ public class Game extends Canvas implements Runnable{
 
 		if (buffStrat == null){
 
-			createBufferStrategy(3);
+			createBufferStrategy(3);//how many layers of buffering
 			return;
 
 		}

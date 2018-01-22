@@ -20,7 +20,7 @@ public class Inventory extends JFrame{
 
 		super();
 
-		JLabel background = new JLabel(new ImageIcon("Resources/inventory-grid.png"));
+		JLabel background = new JLabel(new ImageIcon("Resources/ItemFiles/inventory-grid.png"));
 		setContentPane(background);
 		Container Pane = getContentPane();
 		Pane.setLayout(null);
@@ -50,10 +50,10 @@ public class Inventory extends JFrame{
 
 		//Adds all images to an array
 		itemImages[0] = new ImageIcon();
-		itemImages[1] = new ImageIcon("Resources/Item-1-Damage.png");
-		itemImages[2] = new ImageIcon("Resources/Item-2-Speed.png");
-		itemImages[3] = new ImageIcon("Resources/Item-3-Resistance.png");
-		itemImages[4] = new ImageIcon("Resources/Item-4-FireRate.png");
+		itemImages[1] = new ImageIcon("Resources/ItemFiles/Item-1-Damage.png");
+		itemImages[2] = new ImageIcon("Resources/ItemFiles/Item-2-Speed.png");
+		itemImages[3] = new ImageIcon("Resources/ItemFiles/Item-3-Resistance.png");
+		itemImages[4] = new ImageIcon("Resources/ItemFiles/Item-4-FireRate.png");
 
 		//Builds icons for each slot in the inventory
 		for(int x = 0; x < 10; x++){

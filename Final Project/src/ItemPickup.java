@@ -15,10 +15,10 @@ public class ItemPickup extends JLabel {
 
 		//Adds all images to an array
 		itemImages[0] = new ImageIcon();
-		itemImages[1] = new ImageIcon("Resources/Item-1-Damage.png");
-		itemImages[2] = new ImageIcon("Resources/Item-2-Speed.png");
-		itemImages[3] = new ImageIcon("Resources/Item-3-Resistance.png");
-		itemImages[4] = new ImageIcon("Resources/Item-4-FireRate.png");
+		itemImages[1] = new ImageIcon("Resources/ItemFiles/Item-1-Damage.png");
+		itemImages[2] = new ImageIcon("Resources/ItemFiles/Item-2-Speed.png");
+		itemImages[3] = new ImageIcon("Resources/ItemFiles/Item-3-Resistance.png");
+		itemImages[4] = new ImageIcon("Resources/ItemFiles/Item-4-FireRate.png");
 
 		//Decides the type of item
 		type = (int) ((Math.random() * 4) + 1);
