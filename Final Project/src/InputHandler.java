@@ -27,25 +27,23 @@ public class InputHandler implements KeyListener {
 			Game.pause();
 		}
 		
-		/*
+		
 		//toggle the grid 
 		if(KeyCode == e.VK_E) {
-			if (Game.togGrid = true){
+			if (Game.togGrid == true){
 				Game.togGrid = false;
-			}else {
+			}else{
 				Game.togGrid = true;
 			}
 		}
-		*/
 		
-		
-		
+				
 	}
 
 	public void keyReleased(KeyEvent e) {
 		int KeyCode = e.getKeyCode();
 
-
+		
 		if(KeyCode == e.VK_A) {
 			Game.left = false;
 		}
@@ -58,7 +56,9 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_W) {
 			Game.up = false;
 		}
-		
+		if(KeyCode == e.VK_E) {
+			
+		}
 	}
 	public void keyTyped(KeyEvent e) {
 

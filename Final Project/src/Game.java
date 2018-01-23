@@ -57,7 +57,8 @@ static BufferedImage gTile;
 
 
 	//Key Controls
-	public static boolean left, right, up, down, togGrid = false;
+	public static boolean left, right, up, down;
+	public static boolean  togGrid = true;
 
 
 
@@ -189,7 +190,7 @@ static BufferedImage gTile;
 	}
 
 	private void moveMap() {
-		int spd = 4;
+		int spd = 5;
 		if(left) {
 			xOffset += spd;
 		}

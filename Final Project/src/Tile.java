@@ -42,7 +42,7 @@ public class Tile {
 	}
 
 	public void render(Graphics g) { 
-
+		
 
 		g.drawImage(Game.getgTile(),  x, y, null);
 		//System.out.println("yeet");
@@ -50,10 +50,11 @@ public class Tile {
 		//g.setColor(Color.GREEN);
 		//g.fillRect(x, y, 32, 32);
 
-		if (Game.togGrid = true){
+		if (Game.togGrid == true){
 			g.setColor(Color.WHITE);
 			g.drawRect(x, y, 31, 31);
 		}
+
 	}
 
 }
