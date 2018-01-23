@@ -21,10 +21,14 @@ public class InputHandler implements KeyListener {
 			Game.up = true;
 		}
 		
+		if(KeyCode ==e.MOUSE_EVENT_MASK) {
+			Game.shooting = true;
+		}
 		
 		//pulling up the menu
 		if(KeyCode == e.VK_ESCAPE) {
 			Game.pause();
+			
 		}
 		
 		
@@ -59,6 +63,11 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_E) {
 			
 		}
+		
+		if(KeyCode ==e.MOUSE_EVENT_MASK) {
+			Game.shooting = false;
+		}
+		
 	}
 	public void keyTyped(KeyEvent e) {
 

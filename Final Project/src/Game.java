@@ -57,8 +57,9 @@ static BufferedImage gTile;
 
 
 	//Key Controls
-	public static boolean left, right, up, down;
+	public static boolean left, right, up, down, shooting;
 	public static boolean  togGrid = true;
+	int spd = 5;
 
 
 
@@ -104,7 +105,7 @@ static BufferedImage gTile;
 
 
 	/**
-	 * sets run to false
+	 * sets run to false and exits everything
 	 */
 	public synchronized static void stop() {
 
@@ -186,11 +187,15 @@ static BufferedImage gTile;
 			}
 		}
 		moveMap();
+		Projectile.pShoot(tileHeight, tileHeight, null);
 		player.tick(this);
 	}
 
+	
+	/**
+	 * initiates speed and if inputs are given will move
+	 */
 	private void moveMap() {
-		int spd = 5;
 		if(left) {
 			xOffset += spd;
 		}
