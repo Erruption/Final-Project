@@ -44,14 +44,16 @@ public class Tile {
 	public void render(Graphics g) { 
 
 
-		g.drawImage(Game.gTile,  x, y, null);
+		g.drawImage(Game.getgTile(),  x, y, null);
 		//System.out.println("yeet");
 
 		//g.setColor(Color.GREEN);
 		//g.fillRect(x, y, 32, 32);
 
-		g.setColor(Color.WHITE);
-		g.drawRect(x, y, 31, 31);
+		if (Game.togGrid = true){
+			g.setColor(Color.WHITE);
+			g.drawRect(x, y, 31, 31);
+		}
 	}
 
 }

@@ -8,7 +8,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -33,13 +32,10 @@ public class Game extends Canvas implements Runnable{
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-	static BufferedImage gTile = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
 
 	JFrame frame;
 
-	//Storage for Pickups
-	private ArrayList<ItemPickup> Pickups = new ArrayList<ItemPickup>();
-
+static BufferedImage gTile;
 
 	public static boolean running = false;
 
@@ -55,12 +51,13 @@ public class Game extends Canvas implements Runnable{
 	public int tileWidth = 150;
 	public int tileHeight = 150;
 
+
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
 
 
 
 	//Key Controls
-	public static boolean left, right, up, down;
+	public static boolean left, right, up, down, togGrid = false;
 
 
 
@@ -145,22 +142,27 @@ public class Game extends Canvas implements Runnable{
 
 		requestFocus();
 
+
 	}
 
+	public static BufferedImage getgTile(){
+		return gTile;
+	}
+	
+	
 	/**
 	 * initiates the screen placements by rendering all tiles on screen
 	 */
 	private void init() {
-		BufferedImage gTile = null;
+	
+		System.out.println("gtiles found");
 		try {
 			gTile = ImageIO.read(new File("Resources/TileSet/GrassTile.jpg"));
-			System.out.println("the gtiles are being initialized");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			gTile = null;
 			e.printStackTrace();
 		}
-		System.out.println("gtiles found");
-
 
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
@@ -184,35 +186,27 @@ public class Game extends Canvas implements Runnable{
 		}
 		moveMap();
 		player.tick(this);
-		
-		//Checks for collision and picks up items
-		for(int x = 0;x < Pickups.size(); x++){
-				if(Pickups.get(x).collidesWithItem(new Rectangle((WIDTH / 2 ) - 16,(HEIGHT / 2 ) - 16, 32,32))){
-				Menu.I.addItem(Pickups.get(x).type);
-				Pickups.set(x, null);
-				Pickups.remove(x);
-				}
-		}
 	}
 
 	private void moveMap() {
+		int spd = 4;
 		if(left) {
-			xOffset++;
+			xOffset += spd;
 		}
 		if(right) {
-			xOffset--;
+			xOffset += -spd;
 		}
 		if(up) {
-			yOffset++;
+			yOffset += spd;
 		}
 		if(down) {
-			yOffset--;
+			yOffset += -spd;
 		}
 	}
 
 
 	/**
-	 * renders what the user will see using triple buffering 
+	 * renders what the user will see using double buffering 
 	 */
 	public void render() {
 
@@ -222,7 +216,7 @@ public class Game extends Canvas implements Runnable{
 
 		if (buffStrat == null){
 
-			createBufferStrategy(3);//how many layers of buffering
+			createBufferStrategy(2);//how many layers of buffering
 			return;
 
 		}
