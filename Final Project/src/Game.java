@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -38,6 +39,7 @@ HealthBars HP;
 	static BufferedImage play;
 	static BufferedImage gTile;
 	static BufferedImage projectile;
+	static BufferedImage UpgradeIcon;
 
 	
 	public static boolean running = false;
@@ -56,7 +58,12 @@ HealthBars HP;
 
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
-
+	
+	//Array for pickups
+	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
+	//test
+	//Items.add(0,new ItemPickup(300,300,this));
+	
 
 
 	//Key Controls
@@ -89,6 +96,7 @@ HealthBars HP;
 	 */
 	public synchronized void start() {
 
+		
 		running = true;
 		thread = new Thread(this);
 		thread.start();

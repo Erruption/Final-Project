@@ -21,7 +21,6 @@ public class Player{
 
 	}
 	public void tick(Game game) {
-		this.game = game;
 		x = (game.getWidth() / 2 ) - 16;
 		y = (game.getHeight() / 2 ) - 16;
 	}
