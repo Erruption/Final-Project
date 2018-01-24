@@ -14,7 +14,7 @@ public class Inventory extends JFrame{
 	//Stores Values representing items in inventory
 	private int[] items = new int[10];
 	private JLabel[] itemLabels = new JLabel[10];
-	private ImageIcon[] itemImages = new ImageIcon[5];
+	private ImageIcon[] itemImages = new ImageIcon[4];
 
 	public Inventory(){
 
@@ -53,7 +53,6 @@ public class Inventory extends JFrame{
 		itemImages[1] = new ImageIcon("Resources/ItemFiles/Item-1-Damage.png");
 		itemImages[2] = new ImageIcon("Resources/ItemFiles/Item-2-Speed.png");
 		itemImages[3] = new ImageIcon("Resources/ItemFiles/Item-3-Resistance.png");
-		itemImages[4] = new ImageIcon("Resources/ItemFiles/Item-4-FireRate.png");
 
 		//Builds icons for each slot in the inventory
 		for(int x = 0; x < 10; x++){
