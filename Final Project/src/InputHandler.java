@@ -1,5 +1,6 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 
 public class InputHandler implements KeyListener {
 
@@ -19,10 +20,6 @@ public class InputHandler implements KeyListener {
 		}
 		if(KeyCode == e.VK_W) {
 			Game.up = true;
-		}
-		
-		if(KeyCode ==e.MOUSE_EVENT_MASK) {
-			Game.shooting = true;
 		}
 		
 		//pulling up the menu
@@ -69,6 +66,16 @@ public class InputHandler implements KeyListener {
 		}
 		
 	}
+	
+	  public void mousePressed(MouseEvent e) {
+		//Projectile.pShoot(tileHeight, tileHeight, null);
+	    }
+
+	    public void mouseReleased(MouseEvent e) {
+	       //saySomething("Mouse released; # of clicks: "
+	           //         + e.getClickCount(), e);
+	    }
+	    
 	public void keyTyped(KeyEvent e) {
 
 	}

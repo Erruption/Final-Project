@@ -35,8 +35,10 @@ public class Game extends Canvas implements Runnable{
 
 	JFrame frame;
 
-static BufferedImage gTile;
+	static BufferedImage gTile;
+	static BufferedImage projectile;
 
+	
 	public static boolean running = false;
 
 
@@ -73,7 +75,7 @@ static BufferedImage gTile;
 			render();
 
 			try {
-				Thread.sleep(10); //slows ticks to milliseconds
+				Thread.sleep(5); //slows ticks to milliseconds
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -150,22 +152,32 @@ static BufferedImage gTile;
 	public static BufferedImage getgTile(){
 		return gTile;
 	}
-	
-	
+	public static BufferedImage getProjectile(){
+		return projectile;
+	}
+
 	/**
 	 * initiates the screen placements by rendering all tiles on screen
 	 */
 	private void init() {
-	
-		System.out.println("gtiles found");
+
+		//gets the tile resource and buffers it
 		try {
 			gTile = ImageIO.read(new File("Resources/TileSet/GrassTile.jpg"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			gTile = null;
 			e.printStackTrace();
 		}
 
+		//gets the pic for projectile and buffers it
+		try {
+			projectile = ImageIO.read(new File("Resources/Fireball.jpg"));
+		} catch (IOException e) {
+			projectile = null;
+			e.printStackTrace();
+		}
+
+		
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y] = new Tile(x * 32, y * 32, this);
@@ -187,11 +199,13 @@ static BufferedImage gTile;
 			}
 		}
 		moveMap();
-		Projectile.pShoot(tileHeight, tileHeight, null);
+
 		player.tick(this);
+
+
 	}
 
-	
+
 	/**
 	 * initiates speed and if inputs are given will move
 	 */
@@ -247,7 +261,6 @@ static BufferedImage gTile;
 		}
 
 		player.render(g);
-
 		g.dispose();
 		buffStrat.show();
 
