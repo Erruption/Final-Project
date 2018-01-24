@@ -9,27 +9,44 @@ import javax.imageio.ImageIO;
 public class Projectile {
 
 	Game game;
-	int xStart = (400+(game.getHeight())/2);
-	int yStart = ((game.getWidth())/2);
+	static int xStart;
+	static int yStart;
+	static int x;
+	static int y;
+	
+	public Projectile(int x, int y, Game game) {
+		
 
+		int xStart = (64+(game.getHeight())/2);
+		int yStart = (64+(game.getWidth())/2);
+		
+		
+		
+		this.game = game;
 
-
+	}
+	
 	
 	@SuppressWarnings("unused")
 	public void tick(Game game ) {
 		this.game = game;
 		
+		x = xStart + game.xOffset;
+		y = yStart + game.yOffset;
+
+
 
 
 
 	}
 
 	
+	
 
 
 	public static void render(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(Game.getProjectile(), 128, 128, null);	
+		g.drawImage(Game.getPlay(), x, y, null);
 		
 	}
 }

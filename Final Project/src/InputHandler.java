@@ -28,7 +28,7 @@ public class InputHandler implements KeyListener {
 			
 		}
 		
-		
+
 		//toggle the grid 
 		if(KeyCode == e.VK_E) {
 			if (Game.togGrid == true){

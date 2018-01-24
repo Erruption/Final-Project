@@ -29,7 +29,8 @@ HealthBars HP;
 	InputHandler IH = new InputHandler();
 
 	Player player = new Player(0, 0, this);
-
+	Projectile projectile = new Projectile(0, 0, this);
+	
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 
@@ -37,7 +38,7 @@ HealthBars HP;
 
 	static BufferedImage play;
 	static BufferedImage gTile;
-	static BufferedImage projectile;
+	static BufferedImage fire;
 
 	
 	public static boolean running = false;
@@ -134,7 +135,7 @@ HealthBars HP;
 		frame.setLayout(new BorderLayout());
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack(); //sets preferred size 
-		frame.setResizable(true); //disallows user to resize
+		frame.setResizable(false); //disallows user to resize
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true); //allows user to see
 
@@ -158,7 +159,7 @@ HealthBars HP;
 		return gTile;
 	}
 	public static BufferedImage getProjectile(){
-		return projectile;
+		return fire;
 	}
 
 	/**
@@ -166,7 +167,9 @@ HealthBars HP;
 	 */
 	private void init() {
 
-		//gets the tile resource and buffers it
+		/**
+		 * gets the tile resource and buffers it
+		 */
 		try {
 			gTile = ImageIO.read(new File("Resources/TileSet/GrassTile.jpg"));
 		} catch (IOException e) {
@@ -174,14 +177,24 @@ HealthBars HP;
 			e.printStackTrace();
 		}
 
-		//gets the pic for projectile and buffers it
+		/**
+		 * gets the pic for player and buffers it
+		 */
 		try {
-			play = ImageIO.read(new File("Resources/player.jpg"));
+			play = ImageIO.read(new File("Resources/TileSet/player.jpg"));
 		} catch (IOException e) {
 			play = null;
 			e.printStackTrace();
 		}
-
+		/**
+		 * gets the pic for projectile and buffers it
+		 */
+		try {
+			play = ImageIO.read(new File("Resources/Fireball.jpg"));
+		} catch (IOException e) {
+			play = null;
+			e.printStackTrace();
+		}
 
 		
 		for (int x = 0 ; x < tileWidth; x++) {
@@ -205,7 +218,7 @@ HealthBars HP;
 			}
 		}
 		moveMap();
-		
+		projectile.tick(this);
 		player.tick(this);
 
 
@@ -267,7 +280,6 @@ HealthBars HP;
 		}
 		Projectile.render(g);
 		player.render(g);
-
 		player.renderHP(g);
 
 		g.dispose();

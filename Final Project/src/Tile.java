@@ -35,6 +35,11 @@ public class Tile {
 	public void tick(Game game){
 		this.game=game;
 
+	/* EXAMPLE CODE
+		if (currenthp != previoushp)
+			boxhpbar = Math.floor(totalhp/64)
+			fill rec boxhpbar, 10;
+		*/
 		x = oX + game.xOffset;
 		y = oY + game.yOffset;
 
@@ -49,7 +54,6 @@ public class Tile {
 		//g.setColor(Color.GREEN);
 		//g.fillRect(x, y, 32, 32);
 			
-
 		
 		if (Game.togGrid == true){
 			g.setColor(Color.WHITE);

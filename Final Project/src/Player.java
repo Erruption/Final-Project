@@ -39,11 +39,6 @@ public class Player{
 	
 	public void render(Graphics g) {
 
-
-
-
-<<<<<<< HEAD
-=======
 		BufferedImage play = null;
 		try {
 			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
@@ -52,7 +47,7 @@ public class Player{
 			e.printStackTrace();
 		}
 
->>>>>>> 67c217401f1a055eb2ab8460f0019812f1280216
+
 		g.drawImage( play,  x, y, null);
 
 		//g.setColor(Color.RED);
