@@ -7,7 +7,7 @@ public class InputHandler implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		int KeyCode = e.getKeyCode();
-
+		                    
 //basic controls for game
 		if(KeyCode == e.VK_A) {
 			Game.left = true;

@@ -57,6 +57,7 @@ public class Menu extends JFrame{
 				M.setVisible(false);
 				G = new Game();
 				I = new Inventory();
+				
 				G.start();
 
 			}
