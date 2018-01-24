@@ -24,11 +24,12 @@ public class Projectile {
 
 	}
 
-
+	
 
 
 	public static void render(Graphics g) {
 		// TODO Auto-generated method stub
+		g.drawImage(Game.getProjectile(), 128, 128, null);	
 		
 	}
 }

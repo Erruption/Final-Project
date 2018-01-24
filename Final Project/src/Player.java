@@ -29,14 +29,6 @@ public class Player{
 
 
 
-		BufferedImage play = null;
-		try {
-			play = ImageIO.read(new File("Resources/TileSet/Player.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		g.drawImage( play,  x, y, null);
 
 		//g.setColor(Color.RED);

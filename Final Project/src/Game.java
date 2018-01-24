@@ -35,6 +35,7 @@ public class Game extends Canvas implements Runnable{
 
 	JFrame frame;
 
+	static BufferedImage play;
 	static BufferedImage gTile;
 	static BufferedImage projectile;
 
@@ -60,7 +61,7 @@ public class Game extends Canvas implements Runnable{
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
-	public static boolean  togGrid = true;
+	public static boolean  togGrid = false;
 	int spd = 5;
 
 
@@ -149,7 +150,11 @@ public class Game extends Canvas implements Runnable{
 
 	}
 
-	public static BufferedImage getgTile(){
+
+	public static BufferedImage getPlay(){
+		return play;
+	}
+		public static BufferedImage getgTile(){
 		return gTile;
 	}
 	public static BufferedImage getProjectile(){
@@ -171,11 +176,12 @@ public class Game extends Canvas implements Runnable{
 
 		//gets the pic for projectile and buffers it
 		try {
-			projectile = ImageIO.read(new File("Resources/Fireball.jpg"));
+			play = ImageIO.read(new File("Resources/player.jpg"));
 		} catch (IOException e) {
-			projectile = null;
+			play = null;
 			e.printStackTrace();
 		}
+
 
 		
 		for (int x = 0 ; x < tileWidth; x++) {
@@ -199,7 +205,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 		moveMap();
-
+		
 		player.tick(this);
 
 
@@ -259,7 +265,7 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
-
+		Projectile.render(g);
 		player.render(g);
 		g.dispose();
 		buffStrat.show();
