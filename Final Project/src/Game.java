@@ -21,7 +21,7 @@ import java.awt.event.KeyListener;
  */
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
-
+HealthBars HP;
 	//offset for display of objects
 	int xOffset = 0;
 	int yOffset = 0;
@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	//set all the frame visuals
-	public static final String TITLE = "Realm of the Sane God";
+	public static final String TITLE = "Dwelling of the Sane Mortal";
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
@@ -267,6 +267,9 @@ public class Game extends Canvas implements Runnable{
 		}
 		Projectile.render(g);
 		player.render(g);
+
+		player.renderHP(g);
+
 		g.dispose();
 		buffStrat.show();
 
