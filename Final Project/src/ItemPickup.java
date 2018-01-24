@@ -1,42 +1,69 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
-public class ItemPickup extends JLabel {
+public class ItemPickup {
 	
-	private ImageIcon[] itemImages = new ImageIcon[5];
+	BufferedImage UpgradeIcon;
 	public int type;
+	int x;
+	int y;
+	Game game;
+	
 	
 	/**
 	 * Constructs an item pickup at location x
 	 * @param x
 	 */
-	ItemPickup(Point x){
-
-		//Adds all images to an array
-		itemImages[0] = new ImageIcon();
-		itemImages[1] = new ImageIcon("Resources/ItemFiles/Item-1-Damage.png");
-		itemImages[2] = new ImageIcon("Resources/ItemFiles/Item-2-Speed.png");
-		itemImages[3] = new ImageIcon("Resources/ItemFiles/Item-3-Resistance.png");
-		itemImages[4] = new ImageIcon("Resources/ItemFiles/Item-4-FireRate.png");
-
+	public ItemPickup(int x,int y, Game game) {
+		
 		//Decides the type of item
-		type = (int) ((Math.random() * 4) + 1);
-
-		setSize(70,70);
-		setLocation(x);
-		setIcon(itemImages[type]);
-		setVisible(true);
+		type = (int) ((Math.random() * 3) + 1);
+		this.x = x;
+		this.y = y;
+		this.game = game;
 	}
+	public void tick(Game game) {
+		x += game.xOffset;
+		y += game.yOffset;
+	}
+
+	public void render(Graphics g) {
+
+		BufferedImage play = null;
+		try {
+			if(type == 1){
+				UpgradeIcon = ImageIO.read(new File("Resources/ItemFiles/Item-1-Damage.png"));
+			} else if(type == 2){
+				UpgradeIcon = ImageIO.read(new File("Resources/ItemFiles/Item-2-Speed.png"));
+			} else {
+				UpgradeIcon = ImageIO.read(new File("Resources/ItemFiles/Item-3-Resistance.png"));
+			}
+				
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		g.drawImage( UpgradeIcon,  x, y, null);
+
+	}
+	
 	
 	/**
 	 * Checks if a rectangle collides with an ItemPickup
 	 * @param sizeX
 	 * @return
 	 */
-	public boolean collidesWithItem(Rectangle x) {
+	public boolean collidesWithItem(Rectangle Rec) {
 		
-		if(x.intersects(this.getBounds())) {
+		if(Rec.intersects(x , y , 70,70)) {
 			return true;
 		} else {
 			return false;

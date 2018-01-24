@@ -21,7 +21,6 @@ public class Player{
 
 	}
 	public void tick(Game game) {
-		this.game = game;
 		x = (game.getWidth() / 2 ) - 16;
 		y = (game.getHeight() / 2 ) - 16;
 	}
@@ -39,6 +38,13 @@ public class Player{
 	
 	public void render(Graphics g) {
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 105e66184cd0afc0ca87887ac98589caaca9b69a
 		BufferedImage play = null;
 		try {
 			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
