@@ -94,6 +94,7 @@ public class Inventory extends JFrame{
 			if(items[x] == 0){
 				//Assigns the new item to a spot
 				items[x] = type;
+				refreshIcons();
 				break;
 			}
 		}

@@ -22,7 +22,7 @@ import java.awt.event.KeyListener;
  */
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
-HealthBars HP;
+	HealthBars HP;
 	//offset for display of objects
 	int xOffset = 0;
 	int yOffset = 0;
@@ -31,7 +31,7 @@ HealthBars HP;
 
 	Player player = new Player(0, 0, this);
 	Projectile projectile = new Projectile(0, 0, this);
-	
+
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 
@@ -40,9 +40,13 @@ HealthBars HP;
 	static BufferedImage play;
 	static BufferedImage gTile;
 	static BufferedImage fire;
+<<<<<<< HEAD
+=======
+	static BufferedImage project;
+>>>>>>> 5a846a96927a4f44f5689e90d680367cfbfa6840
 	static BufferedImage UpgradeIcon;
 
-	
+
 	public static boolean running = false;
 
 
@@ -59,12 +63,11 @@ HealthBars HP;
 
 
 	Tile tileArray[][] = new Tile[tileWidth][tileHeight]; 
-	
+
 	//Array for pickups
 	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
-	//test
-	//Items.add(0,new ItemPickup(300,300,this));
-	
+
+
 
 
 	//Key Controls
@@ -98,6 +101,7 @@ HealthBars HP;
 	public synchronized void start() {
 
 		
+
 		running = true;
 		thread = new Thread(this);
 		thread.start();
@@ -163,7 +167,7 @@ HealthBars HP;
 	public static BufferedImage getPlay(){
 		return play;
 	}
-		public static BufferedImage getgTile(){
+	public static BufferedImage getgTile(){
 		return gTile;
 	}
 	public static BufferedImage getProjectile(){
@@ -204,7 +208,7 @@ HealthBars HP;
 			e.printStackTrace();
 		}
 
-		
+
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y] = new Tile(x * 32, y * 32, this);
@@ -225,9 +229,21 @@ HealthBars HP;
 				tileArray[x][y].tick(this);
 			}
 		}
+		
+		if(Items.size() > 0){
+			for(int x = 0; x < Items.size(); x++){
+				Items.get(x).tick(this);
+				if(Items.get(x).collidesWithItem(player.getBounds())){
+					Menu.I.addItem(Items.get(x).getType());
+					Items.remove(x);
+				}
+			}
+		}
+
 		moveMap();
 		projectile.tick(this);
 		player.tick(this);
+
 
 
 	}
@@ -286,6 +302,12 @@ HealthBars HP;
 				}
 			}
 		}
+		if(Items.size() > 0){
+			for(int x = 0; x < Items.size(); x++){
+				Items.get(x).render(g);
+			}
+		}
+
 		Projectile.render(g);
 		player.render(g);
 		player.renderHP(g);

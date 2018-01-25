@@ -10,9 +10,11 @@ import javax.swing.*;
 public class ItemPickup {
 	
 	BufferedImage UpgradeIcon;
-	public int type;
+	private int type;
 	int x;
 	int y;
+	int oX;
+	int oY;
 	Game game;
 	
 	
@@ -24,18 +26,18 @@ public class ItemPickup {
 		
 		//Decides the type of item
 		type = (int) ((Math.random() * 3) + 1);
-		this.x = x;
-		this.y = y;
+		this.oX = x;
+		this.oY = y;
 		this.game = game;
 	}
 	public void tick(Game game) {
-		x += game.xOffset;
-		y += game.yOffset;
-	}
+		x = oX + game.xOffset;
+		y = oY + game.yOffset;
+		}
+	
 
 	public void render(Graphics g) {
 
-		BufferedImage play = null;
 		try {
 			if(type == 1){
 				UpgradeIcon = ImageIO.read(new File("Resources/ItemFiles/Item-1-Damage.png"));
@@ -68,6 +70,10 @@ public class ItemPickup {
 		} else {
 			return false;
 		}	
+	}
+	
+	public int getType() {
+		return type;
 	}
 	
 	

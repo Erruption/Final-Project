@@ -1,6 +1,6 @@
 import java.awt.Color;
-
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +23,7 @@ public class Player{
 	public void tick(Game game) {
 		x = (game.getWidth() / 2 ) - 16;
 		y = (game.getHeight() / 2 ) - 16;
+		
 	}
 
 	public void renderHP(Graphics g) {
@@ -55,6 +56,10 @@ public class Player{
 
 
 
+	}
+	
+	public Rectangle getBounds(){
+			return new Rectangle(x,y,64,64);
 	}
 	
 
