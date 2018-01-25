@@ -84,7 +84,7 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_LEFT) {
 			Game.sleft = false;
 		}
-		if(KeyCode == e.VK_RIGHT) {
+		(KeyCode == e.VK_RIGHT) {
 			Game.sright = false;
 		}
 		if(KeyCode == e.VK_DOWN) {

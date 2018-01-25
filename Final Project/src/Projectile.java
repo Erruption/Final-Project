@@ -40,6 +40,11 @@ public class Projectile {
 		y = yStart + game.yOffset + distanceY;
 		distanceX += velX;
 		distanceY += velY;
+		
+		if (distanceX+distanceY >= 500) {
+			
+		}
+		
 	}
 
 

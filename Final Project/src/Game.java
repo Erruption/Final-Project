@@ -42,10 +42,6 @@ public class Game extends Canvas implements Runnable{
 	static BufferedImage play;
 	static BufferedImage gTile;
 	static BufferedImage fire;
-<<<<<<< HEAD
-
-=======
->>>>>>> 937342531a1e22581140e735dce4dd742d0ef098
 	static BufferedImage project;
 	static BufferedImage UpgradeIcon;
 
