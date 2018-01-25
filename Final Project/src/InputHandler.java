@@ -28,7 +28,7 @@ public class InputHandler implements KeyListener {
 			
 		}
 		
-
+/* slows down timer notably
 		//toggle the grid 
 		if(KeyCode == e.VK_E) {
 			if (Game.togGrid == true){
@@ -37,7 +37,7 @@ public class InputHandler implements KeyListener {
 				Game.togGrid = true;
 			}
 		}
-		
+	*/	
 				
 	}
 
@@ -59,12 +59,7 @@ public class InputHandler implements KeyListener {
 		}
 		if(KeyCode == e.VK_E) {
 			
-		}
-		
-		if(KeyCode ==e.MOUSE_EVENT_MASK) {
-			Game.shooting = false;
-		}
-		
+		}		
 	}
 	
 	  public void mousePressed(MouseEvent e) {

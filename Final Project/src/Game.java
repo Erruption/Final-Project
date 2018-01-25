@@ -39,12 +39,8 @@ HealthBars HP;
 
 	static BufferedImage play;
 	static BufferedImage gTile;
-<<<<<<< HEAD
 	static BufferedImage fire;
-=======
-	static BufferedImage projectile;
 	static BufferedImage UpgradeIcon;
->>>>>>> 105e66184cd0afc0ca87887ac98589caaca9b69a
 
 	
 	public static boolean running = false;
@@ -257,7 +253,7 @@ HealthBars HP;
 
 
 	/**
-	 * renders what the user will see using double buffering 
+	 * renders what the user will see using double or triple buffering 
 	 */
 	public void render() {
 
@@ -267,7 +263,7 @@ HealthBars HP;
 
 		if (buffStrat == null){
 
-			createBufferStrategy(2);//how many layers of buffering
+			createBufferStrategy(3);//how many layers of buffering
 			return;
 
 		}

@@ -13,6 +13,11 @@ public class Projectile {
 	static int yStart;
 	static int x;
 	static int y;
+	static int velX =2;
+	static int velY = 0;
+	static int distanceX = 0;
+	static int distanceY = 0;
+	
 	
 	public Projectile(int x, int y, Game game) {
 		
@@ -26,14 +31,14 @@ public class Projectile {
 
 	}
 	
-	
-	@SuppressWarnings("unused")
+
 	public void tick(Game game ) {
 		this.game = game;
 		
-		x = xStart + game.xOffset;
-		y = yStart + game.yOffset;
-
+		x = xStart + game.xOffset + distanceX;
+		y = yStart + game.yOffset + distanceY;
+		distanceX += velX;
+		distanceY += velY;
 
 
 
