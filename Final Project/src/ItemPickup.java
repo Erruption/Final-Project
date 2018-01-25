@@ -8,7 +8,7 @@ import javax.swing.*;
 
 
 public class ItemPickup {
-	
+
 	BufferedImage UpgradeIcon;
 	private int type;
 	int x;
@@ -16,14 +16,14 @@ public class ItemPickup {
 	int oX;
 	int oY;
 	Game game;
-	
-	
+
+
 	/**
 	 * Constructs an item pickup at location x
 	 * @param x
 	 */
 	public ItemPickup(int x,int y, Game game) {
-		
+
 		//Decides the type of item
 		type = (int) ((Math.random() * 3) + 1);
 		this.oX = x;
@@ -33,8 +33,8 @@ public class ItemPickup {
 	public void tick(Game game) {
 		x = oX + game.xOffset;
 		y = oY + game.yOffset;
-		}
-	
+	}
+
 
 	public void render(Graphics g) {
 
@@ -46,7 +46,7 @@ public class ItemPickup {
 			} else {
 				UpgradeIcon = ImageIO.read(new File("Resources/ItemFiles/Item-3-Resistance.png"));
 			}
-				
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,25 +56,25 @@ public class ItemPickup {
 		g.drawImage( UpgradeIcon,  x, y, null);
 
 	}
-	
-	
+
+
 	/**
 	 * Checks if a rectangle collides with an ItemPickup
 	 * @param sizeX
 	 * @return
 	 */
 	public boolean collidesWithItem(Rectangle Rec) {
-		
+
 		if(Rec.intersects(x , y , 70,70)) {
 			return true;
 		} else {
 			return false;
 		}	
 	}
-	
+
 	public int getType() {
 		return type;
 	}
-	
-	
+
+
 }

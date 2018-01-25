@@ -22,6 +22,23 @@ public class InputHandler implements KeyListener {
 			Game.up = true;
 		}
 		
+		
+		
+		if(KeyCode == e.VK_LEFT) {
+			Game.left = true;
+		}
+		if(KeyCode == e.VK_RIGHT) {
+			Game.right = true;
+		}
+		if(KeyCode == e.VK_DOWN) {
+			Game.down = true;
+		}
+		if(KeyCode == e.VK_UP) {
+			Game.up = true;
+		}
+		
+		
+		
 		//pulling up the menu
 		if(KeyCode == e.VK_ESCAPE) {
 			Game.pause();
@@ -59,7 +76,24 @@ public class InputHandler implements KeyListener {
 		}
 		if(KeyCode == e.VK_E) {
 			
-		}		
+		}
+		
+		
+		
+
+		if(KeyCode == e.VK_LEFT) {
+			Game.sleft = false;
+		}
+		if(KeyCode == e.VK_RIGHT) {
+			Game.sright = false;
+		}
+		if(KeyCode == e.VK_DOWN) {
+			Game.sdown = false;
+		}
+		if(KeyCode == e.VK_UP) {
+			Game.sup = false;
+		}
+		
 	}
 	
 	  public void mousePressed(MouseEvent e) {

@@ -27,10 +27,12 @@ public class Game extends Canvas implements Runnable{
 	int xOffset = 0;
 	int yOffset = 0;
 
+	int z = 0;
+
 	InputHandler IH = new InputHandler();
 
 	Player player = new Player(0, 0, this);
-	Projectile projectile = new Projectile(0, 0, this);
+	
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -40,10 +42,8 @@ public class Game extends Canvas implements Runnable{
 	static BufferedImage play;
 	static BufferedImage gTile;
 	static BufferedImage fire;
-<<<<<<< HEAD
-=======
+
 	static BufferedImage project;
->>>>>>> 5a846a96927a4f44f5689e90d680367cfbfa6840
 	static BufferedImage UpgradeIcon;
 
 
@@ -51,7 +51,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	//set all the frame visuals
-	public static final String TITLE = "Dwelling of the Sane Mortal";
+	public static final String TITLE = "Void of the Sane Mortal";
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 900;
 	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
@@ -66,13 +66,14 @@ public class Game extends Canvas implements Runnable{
 
 	//Array for pickups
 	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
-
+	ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 
 
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
 	public static boolean  togGrid = false;
+	public static boolean sleft, sright, sup, sdown;
 	int spd = 5;
 
 
@@ -223,7 +224,12 @@ public class Game extends Canvas implements Runnable{
 	 * 
 	 */
 	public void tick() {
-
+		z++;
+		if (z == 10) {
+			z= 0;
+			
+			
+		}
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y].tick(this);
@@ -239,12 +245,19 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
-
+		if(Projectiles.size() > 0){
+			for(int x = 0; x < Projectiles.size(); x++){
+				Projectiles.get(x).tick(this);
+				if(Projectiles.get(x).collidesWithMonster(player.getBounds())){
+					//damage monster
+					Projectiles.remove(x);
+				}
+			}
+		}
 		moveMap();
-		projectile.tick(this);
 		player.tick(this);
-
-
+		shootProjectile();
+		
 
 	}
 
@@ -265,8 +278,30 @@ public class Game extends Canvas implements Runnable{
 		if(down) {
 			yOffset += -spd;
 		}
+	
+	
+	
 	}
-
+	/**
+	 * initiates speed and if inputs are given will move
+	 */
+	private void shootProjectile() {
+		if(left) {
+			xOffset += spd;
+		}
+		if(right) {
+			xOffset += -spd;
+		}
+		if(up) {
+			yOffset += spd;
+		}
+		if(down) {
+			yOffset += -spd;
+		}
+	
+	
+	
+	}
 
 	/**
 	 * renders what the user will see using double or triple buffering 
@@ -307,7 +342,11 @@ public class Game extends Canvas implements Runnable{
 				Items.get(x).render(g);
 			}
 		}
-
+		if(Projectiles.size() > 0){
+			for(int x = 0; x < Projectiles.size(); x++){
+				Projectiles.get(x).render(g);
+			}
+		}
 		Projectile.render(g);
 		player.render(g);
 		player.renderHP(g);

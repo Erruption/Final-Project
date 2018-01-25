@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.PointerInfo;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,15 +40,22 @@ public class Projectile {
 		y = yStart + game.yOffset + distanceY;
 		distanceX += velX;
 		distanceY += velY;
-
-
-
-
 	}
 
-	
-	
 
+	/**
+	 * Checks if a rectangle collides with an ItemPickup
+	 * @param sizeX
+	 * @return
+	 */
+	public boolean collidesWithMonster(Rectangle Rec) {
+
+		if(Rec.intersects(x , y , 70,70)) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
 
 	public static void render(Graphics g) {
 		// TODO Auto-generated method stub
