@@ -266,7 +266,7 @@ public class Game extends Canvas implements Runnable{
 
 
 	/**
-	 * renders what the user will see using double buffering 
+	 * renders what the user will see using double or triple buffering 
 	 */
 	public void render() {
 
@@ -276,7 +276,7 @@ public class Game extends Canvas implements Runnable{
 
 		if (buffStrat == null){
 
-			createBufferStrategy(2);//how many layers of buffering
+			createBufferStrategy(3);//how many layers of buffering
 			return;
 
 		}
