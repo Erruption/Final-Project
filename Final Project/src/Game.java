@@ -97,8 +97,6 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public synchronized void start() {
 
-		Items.add(new ItemPickup(200,200,this));
-
 		running = true;
 		thread = new Thread(this);
 		thread.start();
