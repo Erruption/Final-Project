@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Nick Agnew
- *GUI serving as pause menu and visual representation of Upgrades
+ *GUI serving as pause menu and storage of Upgrades
  */
 public class Inventory extends JFrame{
 
@@ -15,7 +15,11 @@ public class Inventory extends JFrame{
 	private int[] items = new int[10];
 	private JLabel[] itemLabels = new JLabel[10];
 	private ImageIcon[] itemImages = new ImageIcon[4];
-
+	private int UpDamage;
+	private int UpSpeed;
+	private int UpResistance;
+	
+	
 	public Inventory(){
 
 		super();
@@ -94,10 +98,11 @@ public class Inventory extends JFrame{
 			if(items[x] == 0){
 				//Assigns the new item to a spot
 				items[x] = type;
-				refreshIcons();
 				break;
 			}
 		}
+		refreshIcons();
+		refreshUpgrades();
 	}
 
 	/**
@@ -133,4 +138,33 @@ public class Inventory extends JFrame{
 		}
 	}
 
+	public void refreshUpgrades(){
+		
+		UpDamage = 0;
+		UpSpeed = 0;
+		UpResistance = 0;
+		
+		for(int x = 0; x < 10; x++){
+			
+			if(items[x] == 1){
+				UpDamage += 5;
+			} else if(items[x] == 2){
+				UpSpeed += 1;
+			} else if(items[x] == 3){
+				UpResistance += 7;
+			}
+			
+		}
+	}
+	
+	public int getUpDamage(){
+		return UpDamage;
+	}
+	public int getUpSpeed(){
+		return UpSpeed;
+	}
+	public int getUpResistance(){
+		return UpResistance;
+	}
+	
 }
