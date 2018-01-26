@@ -26,13 +26,13 @@ public class Game extends Canvas implements Runnable{
 	//offset for display of objects
 	int xOffset = 0;
 	int yOffset = 0;
-
+	int shotTimer = 0;
 	int z = 0;
 
 	InputHandler IH = new InputHandler();
 
 	Player player = new Player(0, 0, this);
-	
+
 
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
@@ -221,18 +221,15 @@ public class Game extends Canvas implements Runnable{
 	 * 
 	 */
 	public void tick() {
-		z++;
-		if (z == 10) {
-			z= 0;
-			
-			
-		}
+
+
+
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y].tick(this);
 			}
 		}
-		
+
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).tick(this);
@@ -245,16 +242,18 @@ public class Game extends Canvas implements Runnable{
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
-				if(Projectiles.get(x).collidesWithMonster(player.getBounds())){
+
+				if(Projectiles.get(x).collidesWithMonster(player.getBounds()) || Projectiles.get(x).isTooFar()){
 					//damage monster
 					Projectiles.remove(x);
+
 				}
 			}
 		}
 		moveMap();
 		player.tick(this);
-		shootProjectile();
-		
+		Shoot();
+
 
 	}
 
@@ -275,29 +274,28 @@ public class Game extends Canvas implements Runnable{
 		if(down) {
 			yOffset += -spd;
 		}
-	
-	
-	
 	}
 	/**
-	 * initiates speed and if inputs are given will move
+	 * projectile created if shooting
 	 */
-	private void shootProjectile() {
-		if(left) {
-			xOffset += spd;
+	private void Shoot() {
+		shotTimer ++;
+		
+		if (shotTimer>= 100){
+			if(sleft) {
+				Projectiles<x> = new Projectile(x, y , null);
+			}
+			if(sright) {
+				xOffset += -spd;
+			}
+			if(sup) {
+				yOffset += spd;
+			}
+			if(sdown) {
+				yOffset += -spd;
+			}
 		}
-		if(right) {
-			xOffset += -spd;
-		}
-		if(up) {
-			yOffset += spd;
-		}
-		if(down) {
-			yOffset += -spd;
-		}
-	
-	
-	
+
 	}
 
 	/**
@@ -344,9 +342,10 @@ public class Game extends Canvas implements Runnable{
 				Projectiles.get(x).render(g);
 			}
 		}
-		Projectile.render(g);
+
 		player.render(g);
 		player.renderHP(g);
+
 
 		g.dispose();
 		buffStrat.show();

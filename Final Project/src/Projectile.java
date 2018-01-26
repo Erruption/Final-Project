@@ -18,38 +18,36 @@ public class Projectile {
 	static int velY = 0;
 	static int distanceX = 0;
 	static int distanceY = 0;
-	
-	
+
+
 	public Projectile(int x, int y, Game game) {
-		
+
 
 		int xStart = (64+(game.getHeight())/2);
 		int yStart = (64+(game.getWidth())/2);
-		
-		
-		
+
+
+
 		this.game = game;
 
 	}
-	
+
 
 	public void tick(Game game ) {
 		this.game = game;
-		
+
 		x = xStart + game.xOffset + distanceX;
 		y = yStart + game.yOffset + distanceY;
 		distanceX += velX;
 		distanceY += velY;
-		
-		if (distanceX+distanceY >= 500) {
-			
-		}
-		
+
+
+
 	}
 
 
 	/**
-	 * Checks if a rectangle collides with an ItemPickup
+	 * Checks if a rectangle collides with an projectile
 	 * @param sizeX
 	 * @return
 	 */
@@ -64,7 +62,21 @@ public class Projectile {
 
 	public static void render(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(Game.getPlay(), x, y, null);
+		g.drawImage(Game.getProjectile(), x, y, null);
+
+	}
+
+	/**
+	 * Checks if the projectile has travelled its full limit
+	 * @param sizeX
+	 * @return
+	 */
+	public boolean isTooFar() {
+		if (distanceX+distanceY >= 500) {
+			return true;
+		}else{
+			return false;
+		}
 		
 	}
 }
