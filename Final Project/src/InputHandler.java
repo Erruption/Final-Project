@@ -25,16 +25,16 @@ public class InputHandler implements KeyListener {
 		
 		
 		if(KeyCode == e.VK_LEFT) {
-			Game.left = true;
+			Game.sleft = true;
 		}
 		if(KeyCode == e.VK_RIGHT) {
-			Game.right = true;
+			Game.sright = true;
 		}
 		if(KeyCode == e.VK_DOWN) {
-			Game.down = true;
+			Game.sdown = true;
 		}
 		if(KeyCode == e.VK_UP) {
-			Game.up = true;
+			Game.sup = true;
 		}
 		
 		

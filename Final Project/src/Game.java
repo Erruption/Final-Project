@@ -200,9 +200,9 @@ public class Game extends Canvas implements Runnable{
 		 * gets the pic for projectile and buffers it
 		 */
 		try {
-			play = ImageIO.read(new File("Resources/Fireball.jpg"));
+			fire = ImageIO.read(new File("Resources/Fireball.jpg"));
 		} catch (IOException e) {
-			play = null;
+			fire = null;
 			e.printStackTrace();
 		}
 
@@ -243,7 +243,7 @@ public class Game extends Canvas implements Runnable{
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
 
-				if(Projectiles.get(x).collidesWithMonster(player.getBounds()) || Projectiles.get(x).isTooFar()){
+				if(Projectiles.get(x).isTooFar()){ //for later: Projectiles.get(x).collidesWithMonster(player.getBounds()) || 
 					//damage monster
 					Projectiles.remove(x);
 
@@ -282,17 +282,27 @@ public class Game extends Canvas implements Runnable{
 		shotTimer ++;
 		
 		if (shotTimer>= 100){
-			if(sleft) {
-				Projectiles<x> = new Projectile(x, y , null);
-			}
+			if(sleft) {	
+				
+				Projectiles.add( new Projectile(50, 50 , null));
+				shotTimer = 0;
+
+			}else
 			if(sright) {
-				xOffset += -spd;
-			}
+				Projectiles.add( new Projectile(50, 50 , null));
+				shotTimer = 0;
+
+			}else
 			if(sup) {
-				yOffset += spd;
-			}
+				Projectiles.add( new Projectile(50, 50 , null));
+				
+				shotTimer = 0;
+
+			}else
 			if(sdown) {
-				yOffset += -spd;
+				Projectiles.add( new Projectile(50, 50 , null));
+				shotTimer = 0;
+
 			}
 		}
 

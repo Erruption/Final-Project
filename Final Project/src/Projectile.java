@@ -10,21 +10,24 @@ import javax.imageio.ImageIO;
 public class Projectile {
 
 	Game game;
-	static int xStart;
-	static int yStart;
-	static int x;
-	static int y;
-	static int velX =2;
-	static int velY = 0;
-	static int distanceX = 0;
-	static int distanceY = 0;
+
+	int velX;
+	int velY;
+	int distanceX;
+	int distanceY;
+	int xStart;
+	int yStart;
+	int x, y;
 
 
-	public Projectile(int x, int y, Game game) {
+	Projectile(int x, int y, Game game) {
 
-
-		int xStart = (64+(game.getHeight())/2);
-		int yStart = (64+(game.getWidth())/2);
+		int velX = 2;
+		int velY = 0;
+		int distanceX = 0;
+		int distanceY = 0;
+		int xStart = 100;
+		int yStart = 100;
 
 
 
@@ -47,24 +50,28 @@ public class Projectile {
 
 
 	/**
-	 * Checks if a rectangle collides with an projectile
+	 * Checks if a rectangle collides with a projectile
 	 * @param sizeX
 	 * @return
 	 */
 	public boolean collidesWithMonster(Rectangle Rec) {
 
-		if(Rec.intersects(x , y , 70,70)) {
+		if(Rec.intersects(x , y , 60,60)) {
 			return true;
 		} else {
 			return false;
 		}	
 	}
 
-	public static void render(Graphics g) {
+	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(Game.getProjectile(), x, y, null);
+		
 
-	}
+			g.drawImage(Game.getProjectile(), x, y, null);
+			
+		}
+
+	
 
 	/**
 	 * Checks if the projectile has travelled its full limit
@@ -77,6 +84,6 @@ public class Projectile {
 		}else{
 			return false;
 		}
-		
+
 	}
 }
