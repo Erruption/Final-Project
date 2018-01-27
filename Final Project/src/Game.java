@@ -65,6 +65,7 @@ public class Game extends Canvas implements Runnable{
 
 	//Array for pickups
 	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
+	ArrayList<HealthPickup> HealthPickups = new ArrayList<HealthPickup>();
 	ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 
 
@@ -99,6 +100,10 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to true and starts the thread
 	 */
 	public synchronized void start() {
+
+		//For testing
+		//HealthPickups.add(new HealthPickup(600,300, this));
+		//Items.add(new ItemPickup(500,300, this));
 
 		running = true;
 		thread = new Thread(this);
@@ -230,6 +235,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+		//Upgrade item collision and pickup
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).tick(this);
@@ -239,6 +245,20 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
+
+		//Health collision and pickup
+		if(HealthPickups.size() > 0){
+			for(int x = 0; x < HealthPickups.size(); x++){
+				HealthPickups.get(x).tick(this);
+				if(HealthPickups.get(x).collidesWithItem(player.getBounds())){
+					//Add to player health-------------------------
+					HealthPickups.remove(x);
+				}
+			}
+		}
+
+
+
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
@@ -280,10 +300,11 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void Shoot() {
 		shotTimer ++;
-		
+		Projectiles.add(new Projectile(player.x, player.y , this));
+
 		if (shotTimer>= 100){
 			if(sleft) {
-				Projectiles<x> = new Projectile(x, y , null);
+				xOffset += spd;
 			}
 			if(sright) {
 				xOffset += -spd;
@@ -335,6 +356,12 @@ public class Game extends Canvas implements Runnable{
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
+			}
+
+		}
+		if(HealthPickups.size() > 0){
+			for(int x = 0; x < HealthPickups.size(); x++){
+				HealthPickups.get(x).render(g);
 			}
 		}
 		if(Projectiles.size() > 0){

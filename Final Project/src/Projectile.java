@@ -60,7 +60,7 @@ public class Projectile {
 		}	
 	}
 
-	public static void render(Graphics g) {
+	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		g.drawImage(Game.getProjectile(), x, y, null);
 
