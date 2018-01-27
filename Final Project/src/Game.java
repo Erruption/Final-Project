@@ -317,18 +317,13 @@ public class Game extends Canvas implements Runnable{
 		Projectiles.add(new Projectile(player.x, player.y , this));
 
 		if (shotTimer>= 100){
-<<<<<<< HEAD
 			if(sleft) {	
 				
 				Projectiles.add( new Projectile(50, 50 , null));
 				shotTimer = 0;
 
 			}else
-=======
-			if(sleft) {
-				xOffset += spd;
-			}
->>>>>>> 8ae1023ce4ff4db41f115948dd1fc71f7e039178
+
 			if(sright) {
 				Projectiles.add( new Projectile(50, 50 , null));
 				shotTimer = 0;
