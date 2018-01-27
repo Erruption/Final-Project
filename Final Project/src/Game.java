@@ -67,6 +67,8 @@ public class Game extends Canvas implements Runnable{
 	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
 	ArrayList<HealthPickup> HealthPickups = new ArrayList<HealthPickup>();
 	ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+	ArrayList<MonRunner> Runners = new ArrayList<MonRunner>();
+	
 
 
 
@@ -104,6 +106,7 @@ public class Game extends Canvas implements Runnable{
 		//For testing
 		//HealthPickups.add(new HealthPickup(600,300, this));
 		//Items.add(new ItemPickup(500,300, this));
+		Runners.add(new MonRunner(800,400,this));
 
 		running = true;
 		thread = new Thread(this);
@@ -256,6 +259,17 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
+		
+		//Monster collision and movement
+				if(Runners.size() > 0){
+					for(int x = 0; x < Runners.size(); x++){
+						Runners.get(x).tick(this);
+						if(Runners.get(x).collidesWithItem(player.getBounds())){
+							//Change to damage player instead of killing
+							player.kill();
+						}
+					}
+				}
 
 
 
@@ -367,6 +381,11 @@ public class Game extends Canvas implements Runnable{
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).render(g);
+			}
+		}
+		if(Runners.size() > 0){
+			for(int x = 0; x < Runners.size(); x++){
+				Runners.get(x).render(g);
 			}
 		}
 

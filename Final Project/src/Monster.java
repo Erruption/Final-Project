@@ -1,43 +1,67 @@
-/*
-import javax.swing.JLabel;
-
-public class Monster {
-	//janked code
-	ghost = new JLabel (ii2);
-	ghost.setSize(200,200);
-	ghost.setLocation(500,500);
-	cp.add(ghost);
 
 
-	//janked some code from my old project
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
-	xG = ghost.getX();
-	yG = ghost.getY();
-	//if ((xP > xG) && (xP < xG+200) && (yP > yG)){
-	//System.exit(0);} //exits program			
-	if (xG > xP){ //ghost is to right of scytheman
-		xG-=3;
-		ghost.setLocation(xG,yG);
-	}
-	else{ //ghost is left of scytheman
-		xG+=3;
-		ghost.setLocation(xG,yG);
-	}
-	if (yG > yP){ //ghost is below scytheman
-		yG-=3;
-		ghost.setLocation(xG,yG);
-	}
-	else{ //ghost is above scytheman
-		yG+=3;
-		ghost.setLocation(xG,yG);
+/**
+ * Nick Agnew
+ *Abstract class for enemies
+ */
+public abstract class Monster {
+
+	BufferedImage MonsterIcon;
+	int x,y;
+	int oX,oY;
+	int mX,mY;
+	int dropUpChance;
+	int dropHPChance;
+	Game game;
+
+
+	public void tick(Game game) {
+		x = mX + oX + game.xOffset;
+		y = mY + oY + game.yOffset;
+		calcMove();
 	}
 
+	//To calculate monsters movement
+	public abstract void calcMove();
+	
+	public void render(Graphics g) {
 
-	public int getxG(){
-		return xG;
+		g.drawImage(MonsterIcon,  x, y, null);
+
 	}
 
 
+	/**
+	 * Rolls for drops and spawns them in Game
+	 */
+	public void dropLoot() {
+
+		int roll = (int) Math.random() * 100 + 1;	
+
+		if(roll <= dropUpChance) {
+			Menu.G.Items.add(new ItemPickup(x ,y , Menu.G));
+		} else if(roll <= dropUpChance + dropHPChance) {
+			Menu.G.HealthPickups.add(new HealthPickup(x ,y , Menu.G));
+		}
+
+	}
+
+	/**
+	 * Checks if a rectangle collides with a Monster
+	 * @param sizeX
+	 * @return
+	 */
+	public boolean collidesWithItem(Rectangle Rec) {
+
+		if(Rec.intersects(x , y , 48,64)) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
 
 }
-*/

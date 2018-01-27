@@ -5,7 +5,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * Nick Agnew
+ * Object that adds to player health on collision
+ */
 public class HealthPickup {
 
 	BufferedImage HealthIcon;

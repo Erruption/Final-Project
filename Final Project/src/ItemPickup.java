@@ -5,7 +5,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * Nick Agnew
+ *Object thats added to inventory on collision with player
+ */
 public class ItemPickup {
 
 	BufferedImage UpgradeIcon;
