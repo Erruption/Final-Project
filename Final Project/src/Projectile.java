@@ -73,7 +73,7 @@ public class Projectile {
 	 */
 	public boolean collidesWithMonster(Rectangle Rec) {
 
-		if(Rec.intersects(x , y , 60,60)) {
+		if(Rec.intersects(proX , proY , 30,30)) {
 			return true;
 		} else {
 			return false;

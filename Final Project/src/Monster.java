@@ -19,7 +19,7 @@ public abstract class Monster {
 	int dropHPChance;
 	int HP;
 	int MaxHP;
-	boolean Alive = true;
+	boolean Alive = false;
 	Game game;
 
 
@@ -38,6 +38,7 @@ public abstract class Monster {
 		g.drawImage(MonsterIcon,  x, y, null);
 
 		//Drawing HP bar
+		g.setColor(Color.BLACK);
 		g.fillRect( x, y - 13, 48, 10);
 		g.setColor(Color.RED);
 		g.fillRect(x + 1, y- 12, (int )(47 * HP/MaxHP), 9);
@@ -76,28 +77,23 @@ public abstract class Monster {
 		}	
 	}
 	
+	public Rectangle getBounds() {
+		return new Rectangle(x,y,48,64);
+	}
+	
 	
 	/**
 	 * Subtracts damage from HP, and calls kill if HP drops below 1
 	 * @param Damage
 	 */
-	public void takeDamage(int Damage) {
+	public void takeDamage(int Damage, int index) {
 			HP -= Damage;
 
 		if(HP < 1) {
-			kill();
+			dropLoot();
+			Menu.G.Runners.remove(index);
 		}
 	}
 
-	
-	/**
-	 * drops loot and sets Alive to false
-	 */
-	private void kill() {
-		
-		Alive = false;
-		dropLoot();
-		
-	}
 
 }

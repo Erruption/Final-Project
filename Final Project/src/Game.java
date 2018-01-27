@@ -67,7 +67,7 @@ public class Game extends Canvas implements Runnable{
 	ArrayList<HealthPickup> HealthPickups = new ArrayList<HealthPickup>();
 	ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
 	ArrayList<MonRunner> Runners = new ArrayList<MonRunner>();
-	
+
 
 
 
@@ -238,6 +238,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+
 		//Upgrade item collision and pickup
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
@@ -249,29 +250,35 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+
 		//Health collision and pickup
 		if(HealthPickups.size() > 0){
 			for(int x = 0; x < HealthPickups.size(); x++){
 				HealthPickups.get(x).tick(this);
 				if(HealthPickups.get(x).collidesWithItem(player.getBounds())){
-					//Add to player health-------------------------
+					if(player.HP < 900) {
+						player.HP += 100;
+					} else {
+						player.HP = 1000;
+					}
 					HealthPickups.remove(x);
 				}
 			}
 		}
-		
+
+
 		//Monster collision and movement
-				if(Runners.size() > 0){
-					for(int x = 0; x < Runners.size(); x++){
-						if(Runners.get(x).Alive = false){
-							Runners.remove(x);
-						}
-						Runners.get(x).tick(this);
-						if(Runners.get(x).collidesWithItem(player.getBounds())){
-							player.takeDamage(100);
-						}
-					}
+		if(Runners.size() > 0){
+			for(int x = 0; x < Runners.size(); x++){
+				if(Runners.get(x).Alive = false){
+					Runners.remove(x);
 				}
+				Runners.get(x).tick(this);
+				if(Runners.get(x).collidesWithItem(player.getBounds())){
+					player.takeDamage(100);
+				}
+			}
+		}
 
 
 
@@ -279,13 +286,26 @@ public class Game extends Canvas implements Runnable{
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
 
-				if(Projectiles.get(x).isTooFar()){ //for later: Projectiles.get(x).collidesWithMonster(player.getBounds()) || 
-					//damage monster
+				if(Projectiles.get(x).isTooFar()){ 
 					Projectiles.remove(x);
-
 				}
 			}
 		}
+		
+		if(Projectiles.size() > 0){
+			for(int X = 0; X < Projectiles.size(); X++){
+				if(Runners.size() > 0){
+					for(int z = 0; z < Runners.size(); z++){
+						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
+							Runners.get(z).takeDamage(50,z);
+							Projectiles.remove(X);
+						}
+					}
+				}
+			}
+		}
+
+
 		moveMap();
 		player.tick(this);
 		checkShoot();
@@ -311,7 +331,7 @@ public class Game extends Canvas implements Runnable{
 			yOffset += -spd;
 		}
 	}
-	
+
 	/**
 	 * initiates speed and if inputs are given will move
 	 */
@@ -319,19 +339,19 @@ public class Game extends Canvas implements Runnable{
 		shotTimer ++;
 		if (shotTimer > 100) {
 			shotTimer = 0;
-			
+
 			int mouse_x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x;
 			int mouse_y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
-			
-			
-			
-			
+
+
+
+
 			Projectiles.add( new Projectile(mouse_x, mouse_y, null));
 
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * renders what the user will see using double or triple buffering 
@@ -368,7 +388,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 		player.render(g);
-		
+
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
@@ -391,7 +411,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
-		
+
 
 
 		g.dispose();

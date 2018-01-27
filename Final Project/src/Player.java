@@ -53,7 +53,7 @@ public class Player{
 		
 		//Drawing HP Bar
 		g.fillRect( x,  y -11, 64, 10);
-		g.setColor(Color.RED);
+		g.setColor(Color.GREEN);
 		g.fillRect(x + 1, y- 10, (int )(63 * HP/1000), 9);
 		
 	}
