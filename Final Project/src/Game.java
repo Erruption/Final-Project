@@ -286,7 +286,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		moveMap();
 		player.tick(this);
-		Shoot();
+		checkShoot();
 
 
 	}
@@ -309,40 +309,26 @@ public class Game extends Canvas implements Runnable{
 			yOffset += -spd;
 		}
 	}
+	
 	/**
-	 * projectile created if shooting
+	 * initiates speed and if inputs are given will move
 	 */
-	private void Shoot() {
+	private void checkShoot() {
 		shotTimer ++;
-		Projectiles.add(new Projectile(player.x, player.y , this));
-
-		if (shotTimer>= 100){
-			if(sleft) {	
-				
-				Projectiles.add( new Projectile(50, 50 , null));
-				shotTimer = 0;
-
-			}else
-
-			if(sright) {
-				Projectiles.add( new Projectile(50, 50 , null));
-				shotTimer = 0;
-
-			}else
-			if(sup) {
-				Projectiles.add( new Projectile(50, 50 , null));
-				
-				shotTimer = 0;
-
-			}else
-			if(sdown) {
-				Projectiles.add( new Projectile(50, 50 , null));
-				shotTimer = 0;
-
-			}
+		if (shotTimer > 100) {
+			shotTimer = 0;
+			
+			int mouse_x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x;
+			int mouse_y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
+			
+			
+			
+			
+			Projectiles.add( new Projectile(mouse_x, mouse_y, null));
 		}
-
 	}
+	
+	
 
 	/**
 	 * renders what the user will see using double or triple buffering 

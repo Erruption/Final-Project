@@ -18,16 +18,33 @@ public class Projectile {
 	int xStart;
 	int yStart;
 	int x, y;
-
-
+	int proX, proY;
+	
+/**
+ * 
+ * @param x	x pos of mouse in canvas
+ * @param y	y pos of mouse in canvas
+ * @param game
+ */
 	Projectile(int x, int y, Game game) {
 
-		int velX = 2;
-		int velY = 0;
-		int distanceX = 0;
-		int distanceY = 0;
-		int xStart = 100;
-		int yStart = 100;
+		double deltaX = -((Menu.G.player.x + Menu.G.player.play.getWidth()/2) - x); //
+		double deltaY = -((Menu.G.player.y + Menu.G.player.play.getHeight()/2) - y);
+		double hyp = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+
+		
+		
+		
+		velX = (int) (6 * (deltaX/hyp));
+		velY = (int) (6 * (deltaY/hyp));
+		
+
+
+
+		distanceX = 0;
+		distanceY = 0;
+		xStart = Menu.G.getWidth()/2 - Menu.G.xOffset;
+		yStart = Menu.G.getHeight()/2 - Menu.G.yOffset;
 
 
 
@@ -39,8 +56,8 @@ public class Projectile {
 	public void tick(Game game ) {
 		this.game = game;
 
-		x = xStart + game.xOffset + distanceX;
-		y = yStart + game.yOffset + distanceY;
+		proX = xStart + Menu.G.xOffset + distanceX;
+		proY = yStart + Menu.G.yOffset + distanceY;
 		distanceX += velX;
 		distanceY += velY;
 
@@ -65,13 +82,13 @@ public class Projectile {
 
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		
 
-			g.drawImage(Game.getProjectile(), x, y, null);
-			
-		}
 
-	
+		g.drawImage(Game.getProjectile(), proX, proY, null);
+
+	}
+
+
 
 	/**
 	 * Checks if the projectile has travelled its full limit

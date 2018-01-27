@@ -23,7 +23,7 @@ public class InputHandler implements KeyListener {
 		}
 		
 		
-		
+		/*
 		if(KeyCode == e.VK_LEFT) {
 			Game.sleft = true;
 		}
@@ -36,7 +36,7 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_UP) {
 			Game.sup = true;
 		}
-		
+		*/
 		
 		
 		//pulling up the menu
@@ -80,7 +80,7 @@ public class InputHandler implements KeyListener {
 		
 		
 		
-
+/*
 		if(KeyCode == e.VK_LEFT) {
 			Game.sleft = false;
 		}
@@ -93,16 +93,16 @@ public class InputHandler implements KeyListener {
 		if(KeyCode == e.VK_UP) {
 			Game.sup = false;
 		}
+	*/
 		
 	}
 	
 	  public void mousePressed(MouseEvent e) {
-		//Projectile.pShoot(tileHeight, tileHeight, null);
-	    }
+		 Menu.G.shooting = true;
+		  }
 
 	    public void mouseReleased(MouseEvent e) {
-	       //saySomething("Mouse released; # of clicks: "
-	           //         + e.getClickCount(), e);
+	     Menu.G.shooting = false;
 	    }
 	    
 	public void keyTyped(KeyEvent e) {
