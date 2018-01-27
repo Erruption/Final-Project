@@ -22,7 +22,6 @@ import java.awt.event.KeyListener;
  */
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
-	HealthBars HP;
 	//offset for display of objects
 	int xOffset = 0;
 	int yOffset = 0;
@@ -106,7 +105,7 @@ public class Game extends Canvas implements Runnable{
 		//For testing
 		//HealthPickups.add(new HealthPickup(600,300, this));
 		//Items.add(new ItemPickup(500,300, this));
-		Runners.add(new MonRunner(800,400,this));
+		Runners.add(new MonRunner(1200,400,this));
 
 		running = true;
 		thread = new Thread(this);
@@ -119,7 +118,6 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public synchronized static void pause() {
 		if (running == true){
-			Menu.I.setVisible(true);
 			running = false;	
 		}else {
 		}
@@ -133,7 +131,9 @@ public class Game extends Canvas implements Runnable{
 
 		running = false;
 		//Make this close the game and not the entire application
-		System.exit(0);
+		Menu.G.setEnabled(false);
+		Menu.G.setVisible(false);
+		Menu.G = null;
 
 	}
 
@@ -263,10 +263,12 @@ public class Game extends Canvas implements Runnable{
 		//Monster collision and movement
 				if(Runners.size() > 0){
 					for(int x = 0; x < Runners.size(); x++){
+						if(Runners.get(x).Alive = false){
+							Runners.remove(x);
+						}
 						Runners.get(x).tick(this);
 						if(Runners.get(x).collidesWithItem(player.getBounds())){
-							//Change to damage player instead of killing
-							player.kill();
+							player.takeDamage(100);
 						}
 					}
 				}
@@ -325,6 +327,7 @@ public class Game extends Canvas implements Runnable{
 			
 			
 			Projectiles.add( new Projectile(mouse_x, mouse_y, null));
+
 		}
 	}
 	
@@ -364,6 +367,8 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
+		player.render(g);
+		
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
@@ -386,8 +391,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
-		player.render(g);
-		player.renderHP(g);
+		
 
 
 		g.dispose();

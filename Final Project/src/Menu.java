@@ -1,8 +1,6 @@
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-
-
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
@@ -22,7 +20,7 @@ public class Menu extends JFrame{
 		//general setting up of JFrame
 		setContentPane(background);
 		setTitle("Game");
-		setSize(400,400);
+		setBounds(40,40,400,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
@@ -54,10 +52,13 @@ public class Menu extends JFrame{
 				System.exit(0);
 			}
 			if ("Start".equals(e.getActionCommand())) { //disposes of current Menu class and Loads the GUI class
+				//Hides the menu
 				M.setVisible(false);
+				//Creates a new game
 				G = new Game();
+				//Creates a new inventory
 				I = new Inventory();
-				
+				//Starts the game
 				G.start();
 
 			}

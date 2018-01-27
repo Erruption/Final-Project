@@ -41,11 +41,11 @@ public class Projectile {
 
 
 
+
 		distanceX = 0;
 		distanceY = 0;
 		xStart = Menu.G.getWidth()/2 - Menu.G.xOffset;
 		yStart = Menu.G.getHeight()/2 - Menu.G.yOffset;
-
 
 
 		this.game = game;
