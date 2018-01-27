@@ -131,7 +131,7 @@ public class Inventory extends JFrame{
 			}
 			else if (e.getActionCommand().equals("Quit")) { //Checks for an action from btnQuit
 				Menu.M.setVisible(true);
-				//Menu.G.stop();
+				Menu.G.stop();
 				Menu.I.dispose();
 				
 			}

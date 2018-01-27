@@ -5,10 +5,16 @@ import javax.imageio.ImageIO;
 
 public class MonRunner extends Monster {
 
+
+	
 	public MonRunner(int x, int y, Game game) {
 		oX = x;
 		oY = y;
 		this.game = game;
+		MaxHP = 500;
+		HP = 500;
+		dropUpChance = 10;
+		dropHPChance = 25;
 		
 		try {
 			MonsterIcon = ImageIO.read(new File("Resources/MonsterFiles/Monster-Runner.png"));
@@ -25,8 +31,8 @@ public class MonRunner extends Monster {
 		double deltaY = (Menu.G.player.y + Menu.G.player.play.getHeight()/2) - (this.y + this.MonsterIcon.getHeight()/2);
 		double hyp = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
 		
-		mX += (int) 4 * Math.cos(deltaX/hyp);
-		mY += (int) 4 * Math.sin(deltaY/hyp);
+		mX += (int) 4 * deltaX/hyp;
+		mY += (int) 4 * deltaY/hyp;
 	}
 
 }

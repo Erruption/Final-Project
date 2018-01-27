@@ -22,12 +22,12 @@ public class Projectile {
 
 	Projectile(int x, int y, Game game) {
 
-		int velX = 2;
-		int velY = 0;
-		int distanceX = 0;
-		int distanceY = 0;
-		int xStart = 100;
-		int yStart = 100;
+		velX = 2;
+		velY = 0;
+		distanceX = 0;
+		distanceY = 0;
+		xStart = 100;
+		yStart = 100;
 
 
 

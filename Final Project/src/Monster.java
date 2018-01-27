@@ -1,5 +1,6 @@
 
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -16,6 +17,9 @@ public abstract class Monster {
 	int mX,mY;
 	int dropUpChance;
 	int dropHPChance;
+	int HP;
+	int MaxHP;
+	boolean Alive = true;
 	Game game;
 
 
@@ -27,10 +31,18 @@ public abstract class Monster {
 
 	//To calculate monsters movement
 	public abstract void calcMove();
-	
+
 	public void render(Graphics g) {
 
+		//Drawing Monster
 		g.drawImage(MonsterIcon,  x, y, null);
+
+		//Drawing HP bar
+		g.fillRect( x, y - 13, 48, 10);
+		g.setColor(Color.RED);
+		g.fillRect(x + 1, y- 12, (int )(47 * HP/MaxHP), 9);
+
+
 
 	}
 
@@ -62,6 +74,30 @@ public abstract class Monster {
 		} else {
 			return false;
 		}	
+	}
+	
+	
+	/**
+	 * Subtracts damage from HP, and calls kill if HP drops below 1
+	 * @param Damage
+	 */
+	public void takeDamage(int Damage) {
+			HP -= Damage;
+
+		if(HP < 1) {
+			kill();
+		}
+	}
+
+	
+	/**
+	 * drops loot and sets Alive to false
+	 */
+	private void kill() {
+		
+		Alive = false;
+		dropLoot();
+		
 	}
 
 }

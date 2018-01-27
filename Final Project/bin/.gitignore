@@ -2,3 +2,5 @@
 /Monsters/
 /Monster.class
 /MonRunner.class
+/GameOver.class
+/GameOver$btnListener.class

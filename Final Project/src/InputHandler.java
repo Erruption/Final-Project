@@ -10,6 +10,7 @@ public class InputHandler implements KeyListener {
 		                    
 //basic controls for game
 		if(KeyCode == e.VK_A) {
+			//Menu.G.player.takeDamage(100);
 			Game.left = true;
 		}
 		if(KeyCode == e.VK_D) {
@@ -42,6 +43,7 @@ public class InputHandler implements KeyListener {
 		//pulling up the menu
 		if(KeyCode == e.VK_ESCAPE) {
 			Game.pause();
+			Menu.I.setVisible(true);
 			
 		}
 		
