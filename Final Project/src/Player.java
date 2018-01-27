@@ -19,6 +19,13 @@ public class Player{
 		this.y = y;
 		this.game = game;
 
+		try {
+			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	public void tick(Game game) {
 		x = (game.getWidth() / 2 ) - 32;
@@ -40,15 +47,6 @@ public class Player{
 	public void render(Graphics g) {
 
 
-		BufferedImage play = null;
-		try {
-			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
 		g.drawImage( play,  x, y, null);
 
 		//g.setColor(Color.RED);
@@ -56,6 +54,11 @@ public class Player{
 
 
 
+	}
+	
+	public void kill() {
+		//Put actual code here
+		System.exit(0);
 	}
 	
 	public Rectangle getBounds(){

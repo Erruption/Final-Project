@@ -65,7 +65,10 @@ public class Game extends Canvas implements Runnable{
 
 	//Array for pickups
 	ArrayList<ItemPickup> Items = new ArrayList<ItemPickup>();
+	ArrayList<HealthPickup> HealthPickups = new ArrayList<HealthPickup>();
 	ArrayList<Projectile> Projectiles = new ArrayList<Projectile>();
+	ArrayList<MonRunner> Runners = new ArrayList<MonRunner>();
+	
 
 
 
@@ -99,6 +102,11 @@ public class Game extends Canvas implements Runnable{
 	 * sets run to true and starts the thread
 	 */
 	public synchronized void start() {
+
+		//For testing
+		//HealthPickups.add(new HealthPickup(600,300, this));
+		//Items.add(new ItemPickup(500,300, this));
+		Runners.add(new MonRunner(800,400,this));
 
 		running = true;
 		thread = new Thread(this);
@@ -230,6 +238,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+		//Upgrade item collision and pickup
 		if(Items.size() > 0){
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).tick(this);
@@ -239,6 +248,31 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
+
+		//Health collision and pickup
+		if(HealthPickups.size() > 0){
+			for(int x = 0; x < HealthPickups.size(); x++){
+				HealthPickups.get(x).tick(this);
+				if(HealthPickups.get(x).collidesWithItem(player.getBounds())){
+					//Add to player health-------------------------
+					HealthPickups.remove(x);
+				}
+			}
+		}
+		
+		//Monster collision and movement
+				if(Runners.size() > 0){
+					for(int x = 0; x < Runners.size(); x++){
+						Runners.get(x).tick(this);
+						if(Runners.get(x).collidesWithItem(player.getBounds())){
+							//Change to damage player instead of killing
+							player.kill();
+						}
+					}
+				}
+
+
+
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
@@ -280,14 +314,21 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void Shoot() {
 		shotTimer ++;
-		
+		Projectiles.add(new Projectile(player.x, player.y , this));
+
 		if (shotTimer>= 100){
+<<<<<<< HEAD
 			if(sleft) {	
 				
 				Projectiles.add( new Projectile(50, 50 , null));
 				shotTimer = 0;
 
 			}else
+=======
+			if(sleft) {
+				xOffset += spd;
+			}
+>>>>>>> 8ae1023ce4ff4db41f115948dd1fc71f7e039178
 			if(sright) {
 				Projectiles.add( new Projectile(50, 50 , null));
 				shotTimer = 0;
@@ -346,10 +387,21 @@ public class Game extends Canvas implements Runnable{
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
 			}
+
+		}
+		if(HealthPickups.size() > 0){
+			for(int x = 0; x < HealthPickups.size(); x++){
+				HealthPickups.get(x).render(g);
+			}
 		}
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).render(g);
+			}
+		}
+		if(Runners.size() > 0){
+			for(int x = 0; x < Runners.size(); x++){
+				Runners.get(x).render(g);
 			}
 		}
 
