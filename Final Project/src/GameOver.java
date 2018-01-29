@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 
 public class GameOver extends JFrame {
 
+	
+	//Unused Class
+	
 	public GameOver() {
 
 		setTitle("Game Over");

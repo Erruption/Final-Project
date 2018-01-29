@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Player{
 	BufferedImage play;
@@ -54,7 +55,7 @@ public class Player{
 		//Drawing HP Bar
 		g.fillRect( x,  y -11, 64, 10);
 		g.setColor(Color.GREEN);
-		g.fillRect(x + 1, y- 10, (int )(63 * HP/1000), 9);
+		g.fillRect(x + 1, y- 10, (int )(62 * HP/1000), 8);
 		
 	}
 	
@@ -65,7 +66,10 @@ public class Player{
 	public void kill() {
 		
 		Menu.G.pause();
-		new GameOver();
+		JOptionPane.showMessageDialog(Menu.G,"You are Dead");
+		Menu.M.setVisible(true);
+		Menu.I.dispose();
+		Menu.G.stop();
 	}
 	
 	

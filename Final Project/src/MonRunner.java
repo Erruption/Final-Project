@@ -13,8 +13,8 @@ public class MonRunner extends Monster {
 		this.game = game;
 		MaxHP = 500;
 		HP = 500;
-		dropUpChance = 10;
-		dropHPChance = 25;
+		dropUpChance = 20;
+		dropHPChance = 30;
 		
 		try {
 			MonsterIcon = ImageIO.read(new File("Resources/MonsterFiles/Monster-Runner.png"));

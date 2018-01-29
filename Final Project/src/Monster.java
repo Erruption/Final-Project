@@ -41,7 +41,7 @@ public abstract class Monster {
 		g.setColor(Color.BLACK);
 		g.fillRect( x, y - 13, 48, 10);
 		g.setColor(Color.RED);
-		g.fillRect(x + 1, y- 12, (int )(47 * HP/MaxHP), 9);
+		g.fillRect(x + 1, y- 12, (int )(46 * HP/MaxHP), 8);
 
 
 
@@ -53,10 +53,10 @@ public abstract class Monster {
 	 */
 	public void dropLoot() {
 
-		int roll = (int) Math.random() * 100 + 1;	
+		int roll = (int) ((Math.random() * 100) + 1);	
 
 		if(roll <= dropUpChance) {
-			Menu.G.Items.add(new ItemPickup(x ,y , Menu.G));
+			Menu.G.Items.add(new ItemPickup(x +3 ,y +3 , Menu.G));
 		} else if(roll <= dropUpChance + dropHPChance) {
 			Menu.G.HealthPickups.add(new HealthPickup(x ,y , Menu.G));
 		}
