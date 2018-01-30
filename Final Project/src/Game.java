@@ -75,6 +75,7 @@ public class Game extends Canvas implements Runnable{
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
 	public static boolean sleft, sright, sup, sdown;
+    final int basespd = 5;
 	int spd = 5;
 
 
@@ -117,7 +118,8 @@ public class Game extends Canvas implements Runnable{
 		//For testing
 		//HealthPickups.add(new HealthPickup(600,300, this));
 		//Items.add(new ItemPickup(500,300, this));
-		Runners.add(new MonRunner(1200,400,this));
+		spawnMonster();
+		//Runners.add(new MonRunner(1200,400,this));
 
 		running = true;
 		thread = new Thread(this);
@@ -278,7 +280,22 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+		
+		//Spawns the bois
+		MonTimer -= 1;
+		if(MonTimer <= 0) {
 
+			spawnMonster();
+
+			if(MonTimerMax >= 100) {
+				MonTimerMax -= 50;
+			}
+			
+			MonTimer = MonTimerMax;
+		}
+
+
+		
 		//Monster collision and movement
 		if(Runners.size() > 0){
 			for(int x = 0; x < Runners.size(); x++){
@@ -311,24 +328,14 @@ public class Game extends Canvas implements Runnable{
 						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
 							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
 							Projectiles.remove(X);
+							break;
 						}
 					}
 				}
 			}
 		}
 
-		//MonTimer -= 1;
-		if(MonTimer <= 0) {
-
-			spawnMonster();
-
-			if(MonTimerMax >= 100) {
-				MonTimerMax -= 50;
-			}
-			
-		}
-
-
+	
 
 		moveMap();
 		player.tick(this);
@@ -340,22 +347,24 @@ public class Game extends Canvas implements Runnable{
 
 	private void spawnMonster() {
 
-		int x;
-		int y;
+		int monX;
+		int monY;
 
 		while(true) {
-			x = (int)(Math.random() * Menu.G.WIDTH - 47); //Generates an x
-			y = (int)(Math.random() * Menu.G.HEIGHT - 63);//Generates a y
-
+			
+			monX = (int)(Math.random() * (WIDTH + 400)) - 200;//Generates an x
+			monY = (int)(Math.random() * (HEIGHT + 400)) - 200;//Generates a y
+			
 			//Checks to make sure the location is off screen
-			if((x > Menu.G.WIDTH || x < -47) && (y > Menu.G.HEIGHT || y < -63)){
-		
-				if(Runners.size() < 20) {
+			if((monX > WIDTH || monX < -47 || monY > HEIGHT || monY < -63)){
+				//if( monX < -47) {
+				if(Runners.size() < 2000) {
 					//creates a new monster if there are less than 20 already in the game
-					Runners.add(new MonRunner(x,y,this));
+					Runners.add(new MonRunner(monX-xOffset,monY-yOffset,this));
 				}
 				break;
-			}
+				}
+				
 		}
 	}
 
