@@ -90,7 +90,7 @@ public class Player{
 	public void takeDamage(int Damage) {
 		if(IFrames < 1) {
 			HP -= (Damage - Menu.I.getUpResistance());
-			IFrames = 100;
+			IFrames = 40;
 		}
 
 		if(HP < 1) {

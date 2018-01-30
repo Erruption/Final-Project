@@ -70,11 +70,12 @@ public class Game extends Canvas implements Runnable{
 
 	//Monster Spawn Timer
 	int MonTimer = 150;
-	int MonTimerMax = 2000;
+	int MonTimerMax = 1500;
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
 	public static boolean sleft, sright, sup, sdown;
+    final int basespd = 5;
 	int spd = 5;
 
 
@@ -101,7 +102,7 @@ public class Game extends Canvas implements Runnable{
 			render();
 
 			try {
-				Thread.sleep(20); //slows ticks to milliseconds
+				Thread.sleep(10); //slows ticks to milliseconds
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -117,7 +118,8 @@ public class Game extends Canvas implements Runnable{
 		//For testing
 		//HealthPickups.add(new HealthPickup(600,300, this));
 		//Items.add(new ItemPickup(500,300, this));
-		Runners.add(new MonRunner(1200,400,this));
+		//spawnMonster();
+		//Runners.add(new MonRunner(1200,400,this));
 
 		running = true;
 		thread = new Thread(this);
@@ -243,7 +245,16 @@ public class Game extends Canvas implements Runnable{
 	public void tick() {
 
 
+		if(Projectiles.size() > 0){
+			for(int x = 0; x < Projectiles.size(); x++){
+				Projectiles.get(x).tick(this);
 
+				if(Projectiles.get(x).isTooFar()){ 
+					Projectiles.remove(x);
+				}
+			}
+		}
+		
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y].tick(this);
@@ -278,46 +289,9 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
-
-		//Monster collision and movement
-		if(Runners.size() > 0){
-			for(int x = 0; x < Runners.size(); x++){
-				if(Runners.get(x).Alive = false){
-					Runners.remove(x);
-				}
-				Runners.get(x).tick(this);
-				if(Runners.get(x).collidesWithItem(player.getBounds())){
-					player.takeDamage(100);
-				}
-			}
-		}
-
-
-
-		if(Projectiles.size() > 0){
-			for(int x = 0; x < Projectiles.size(); x++){
-				Projectiles.get(x).tick(this);
-
-				if(Projectiles.get(x).isTooFar()){ 
-					Projectiles.remove(x);
-				}
-			}
-		}
-
-		if(Projectiles.size() > 0){
-			for(int X = 0; X < Projectiles.size(); X++){
-				if(Runners.size() > 0){
-					for(int z = 0; z < Runners.size(); z++){
-						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
-							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
-							Projectiles.remove(X);
-						}
-					}
-				}
-			}
-		}
-
-		//MonTimer -= 1;
+		
+		//Spawns the bois
+		MonTimer -= 3;
 		if(MonTimer <= 0) {
 
 			spawnMonster();
@@ -326,9 +300,43 @@ public class Game extends Canvas implements Runnable{
 				MonTimerMax -= 50;
 			}
 			
+			MonTimer = MonTimerMax;
 		}
 
 
+		
+		//Monster collision and movement
+		if(Runners.size() > 0){
+			for(int x = 0; x < Runners.size(); x++){
+				if(Runners.get(x).Alive = false){
+					Runners.remove(x);
+				}
+				Runners.get(x).tick(this);
+				if(Runners.get(x).collidesWithItem(player.getBounds())){
+					player.takeDamage((int)(Math.random()*60)+70);
+				}
+			}
+		}
+
+
+
+	
+
+		if(Projectiles.size() > 0){
+			for(int X = 0; X < Projectiles.size(); X++){
+				if(Runners.size() > 0){
+					for(int z = 0; z < Runners.size(); z++){
+						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
+							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
+							Projectiles.remove(X);
+							break;
+						}
+					}
+				}
+			}
+		}
+
+	
 
 		moveMap();
 		player.tick(this);
@@ -340,22 +348,24 @@ public class Game extends Canvas implements Runnable{
 
 	private void spawnMonster() {
 
-		int x;
-		int y;
+		int monX;
+		int monY;
 
 		while(true) {
-			x = (int)(Math.random() * Menu.G.WIDTH - 47); //Generates an x
-			y = (int)(Math.random() * Menu.G.HEIGHT - 63);//Generates a y
-
+			
+			monX = (int)(Math.random() * (WIDTH + 400)) - 200;//Generates an x
+			monY = (int)(Math.random() * (HEIGHT + 400)) - 200;//Generates a y
+			
 			//Checks to make sure the location is off screen
-			if((x > Menu.G.WIDTH || x < -47) && (y > Menu.G.HEIGHT || y < -63)){
-		
+			if((monX > WIDTH || monX < -47 || monY > HEIGHT || monY < -63)){
+				//if( monX < -47) {
 				if(Runners.size() < 20) {
 					//creates a new monster if there are less than 20 already in the game
-					Runners.add(new MonRunner(x,y,this));
+					Runners.add(new MonRunner(monX-xOffset,monY-yOffset,this));
 				}
 				break;
-			}
+				}
+				
 		}
 	}
 
@@ -424,7 +434,7 @@ public class Game extends Canvas implements Runnable{
 
 		if (buffStrat == null){
 
-			createBufferStrategy(3);//how many layers of buffering
+			createBufferStrategy(2);//how many layers of buffering
 			return;
 
 		}

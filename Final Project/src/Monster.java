@@ -21,6 +21,8 @@ public abstract class Monster {
 	int HP;
 	int MaxHP;
 	boolean Alive = false;
+	int monSpd = (int) (Math.random()*3)+3;
+
 	Game game;
 
 	
@@ -61,7 +63,7 @@ public abstract class Monster {
 			Menu.G.Items.add(new ItemPickup(x - Menu.G.xOffset ,y - Menu.G.yOffset , Menu.G));
 
 		} else if(roll <= dropUpChance + dropHPChance) {
-			Menu.G.HealthPickups.add(new HealthPickup(x ,y , Menu.G));
+			Menu.G.HealthPickups.add(new HealthPickup(x - Menu.G.xOffset ,y - Menu.G.yOffset , Menu.G));
 		}
 
 	}

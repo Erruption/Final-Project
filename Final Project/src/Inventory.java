@@ -150,6 +150,7 @@ public class Inventory extends JFrame{
 				UpDamage += 50;
 			} else if(items[x] == 2){
 				UpSpeed += 1;
+				Menu.G.spd = Menu.G.basespd + UpSpeed;
 			} else if(items[x] == 3){
 				UpResistance += 7;
 			}
