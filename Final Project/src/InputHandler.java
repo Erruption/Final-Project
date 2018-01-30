@@ -23,14 +23,7 @@ public class InputHandler implements KeyListener {
 			Game.up = true;
 		}
 		
-		
-	
-		if(KeyCode == e.VK_F) {
-			System.out.println("X Value: "+Monster.getMonsterX());
-			System.out.println("Y Value: "+Monster.getMonsterY());
-			Menu.G.Items.add(new ItemPickup(Monster.x,Monster.y, Menu.G));
-		}
-		
+
 		
 		
 		//pulling up the menu
