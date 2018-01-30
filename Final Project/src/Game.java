@@ -23,10 +23,7 @@ import java.awt.event.KeyListener;
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
 	//offset for display of objects
-	int xOffset = 0;
-	int yOffset = 0;
-	int shotTimer = 0;
-	int z = 0;
+	
 
 	InputHandler IH = new InputHandler();
 
@@ -73,12 +70,23 @@ public class Game extends Canvas implements Runnable{
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
-	public static boolean  togGrid = false;
 	public static boolean sleft, sright, sup, sdown;
 	int spd = 5;
+	
+	
+	int xOffset = -((WIDTH + tileWidth *16)/2);
+	int yOffset = -((HEIGHT + tileHeight *16)/2);
+	
+	int xMin = 0;
+	int xMax = - tileWidth * 32 + 900;
+	int yMin = 0;
+	int yMax = - tileHeight * 32 + 900;
+	
+	int shotTimer = 0;
+	int z = 0;
 
-
-
+	
+	
 
 	/**
 	 * while running tick and render frames
@@ -330,6 +338,20 @@ public class Game extends Canvas implements Runnable{
 		if(down) {
 			yOffset += -spd;
 		}
+
+		if (xOffset >=  xMin) {
+			xOffset = xMin;
+		}
+		if (xOffset <= xMax) {
+			xOffset = xMax;
+		}
+		if (yOffset >=  yMin) {
+			yOffset = yMin;
+		}
+		if (yOffset <= yMax) {
+			yOffset = yMax;
+		}
+	
 	}
 
 	/**
@@ -376,6 +398,8 @@ public class Game extends Canvas implements Runnable{
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
 		//checks if the tile will be on screen and only renders if it will
+		
+
 		for (int x = 0 ; x < tileWidth; x++) { //for width of the screen
 			for (int y = 0 ; y< tileHeight; y++) { //for height of the screen
 				if (tileArray[x][y].x >= 0 - 32 && //if within left side of the screen
@@ -388,8 +412,9 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 		player.render(g);
-
+		Tile.renderWalls(g);
 		if(Items.size() > 0){
+			
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
 			}

@@ -35,8 +35,8 @@ public class Projectile {
 		
 		
 		
-		velX = (int) (6 * (deltaX/hyp));
-		velY = (int) (6 * (deltaY/hyp));
+		velX = (int) (10 * (deltaX/hyp));
+		velY = (int) (10 * (deltaY/hyp));
 		
 
 
@@ -56,8 +56,8 @@ public class Projectile {
 	public void tick(Game game ) {
 		this.game = game;
 
-		proX = xStart + Menu.G.xOffset + distanceX;
-		proY = yStart + Menu.G.yOffset + distanceY;
+		proX = xStart + Menu.G.xOffset + distanceX - 16;
+		proY = yStart + Menu.G.yOffset + distanceY - 16;
 		distanceX += velX;
 		distanceY += velY;
 
@@ -96,7 +96,7 @@ public class Projectile {
 	 * @return
 	 */
 	public boolean isTooFar() {
-		if (distanceX+distanceY >= 500) {
+		if (distanceX+distanceY >= 500 || distanceX+distanceY <= -500) {
 			return true;
 		}else{
 			return false;
