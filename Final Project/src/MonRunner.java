@@ -11,8 +11,8 @@ public class MonRunner extends Monster {
 		oX = x;
 		oY = y;
 		this.game = game;
-		MaxHP = 500;
-		HP = 500;
+		MaxHP = 600;
+		HP = 600;
 		dropUpChance = 20;
 		dropHPChance = 30;
 		

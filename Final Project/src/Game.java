@@ -23,14 +23,14 @@ import java.awt.event.KeyListener;
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L ;
 	//offset for display of objects
-	
+
 
 	InputHandler IH = new InputHandler();
 
 	Player player = new Player(0, 0, this);
 
 
-	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	
 
 
 	JFrame frame;
@@ -46,11 +46,13 @@ public class Game extends Canvas implements Runnable{
 
 
 	//set all the frame visuals
-	public static final String TITLE = "Void of the Sane Mortal";
-	public static final int WIDTH = 900;
-	public static final int HEIGHT = 900;
-	public static final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
+	public final String TITLE = "Void of the Sane Mortal";
+	public final int WIDTH = 900;
+	public final int HEIGHT = 900;
+	public final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
 	Thread thread;
+	
+	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	//dim in tiles
 	public int tileWidth = 150;
@@ -66,27 +68,29 @@ public class Game extends Canvas implements Runnable{
 	ArrayList<MonRunner> Runners = new ArrayList<MonRunner>();
 
 
-
+	//Monster Spawn Timer
+	int MonTimer = 150;
+	int MonTimerMax = 2000;
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
 	public static boolean sleft, sright, sup, sdown;
 	int spd = 5;
-	
-	
+
+
 	int xOffset = -((WIDTH + tileWidth *16)/2);
 	int yOffset = -((HEIGHT + tileHeight *16)/2);
-	
+
 	int xMin = 0;
 	int xMax = - tileWidth * 32 + 900;
 	int yMin = 0;
 	int yMax = - tileHeight * 32 + 900;
-	
+
 	int shotTimer = 0;
 	int z = 0;
 
-	
-	
+
+
 
 	/**
 	 * while running tick and render frames
@@ -97,7 +101,7 @@ public class Game extends Canvas implements Runnable{
 			render();
 
 			try {
-				Thread.sleep(5); //slows ticks to milliseconds
+				Thread.sleep(20); //slows ticks to milliseconds
 
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -138,7 +142,7 @@ public class Game extends Canvas implements Runnable{
 	public synchronized static void stop() {
 
 		running = false;
-		//Make this close the game and not the entire application
+		//Make this close the game
 		Menu.G.setEnabled(false);
 		Menu.G.setVisible(false);
 		Menu.G = null;
@@ -299,13 +303,13 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
-		
+
 		if(Projectiles.size() > 0){
 			for(int X = 0; X < Projectiles.size(); X++){
 				if(Runners.size() > 0){
 					for(int z = 0; z < Runners.size(); z++){
 						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
-							Runners.get(z).takeDamage(50,z);
+							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
 							Projectiles.remove(X);
 						}
 					}
@@ -313,12 +317,46 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
+		//MonTimer -= 1;
+		if(MonTimer <= 0) {
+
+			spawnMonster();
+
+			if(MonTimerMax >= 100) {
+				MonTimerMax -= 50;
+			}
+			
+		}
+
+
 
 		moveMap();
 		player.tick(this);
 		checkShoot();
 
 
+	}
+
+
+	private void spawnMonster() {
+
+		int x;
+		int y;
+
+		while(true) {
+			x = (int)(Math.random() * Menu.G.WIDTH - 47); //Generates an x
+			y = (int)(Math.random() * Menu.G.HEIGHT - 63);//Generates a y
+
+			//Checks to make sure the location is off screen
+			if((x > Menu.G.WIDTH || x < -47) && (y > Menu.G.HEIGHT || y < -63)){
+		
+				if(Runners.size() < 20) {
+					//creates a new monster if there are less than 20 already in the game
+					Runners.add(new MonRunner(x,y,this));
+				}
+				break;
+			}
+		}
 	}
 
 
@@ -351,7 +389,7 @@ public class Game extends Canvas implements Runnable{
 		if (yOffset <= yMax) {
 			yOffset = yMax;
 		}
-	
+
 	}
 
 	/**
@@ -398,7 +436,7 @@ public class Game extends Canvas implements Runnable{
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
 		//checks if the tile will be on screen and only renders if it will
-		
+
 
 		for (int x = 0 ; x < tileWidth; x++) { //for width of the screen
 			for (int y = 0 ; y< tileHeight; y++) { //for height of the screen
@@ -414,7 +452,7 @@ public class Game extends Canvas implements Runnable{
 		player.render(g);
 		Tile.renderWalls(g);
 		if(Items.size() > 0){
-			
+
 			for(int x = 0; x < Items.size(); x++){
 				Items.get(x).render(g);
 			}

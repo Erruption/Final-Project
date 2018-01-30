@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
 public abstract class Monster {
 
 	BufferedImage MonsterIcon;
-	int x,y;
-	int oX,oY;
-	int mX,mY;
+	int x,y;   //Calculated X Value
+	int oX,oY; //Original Location
+	int mX,mY; //Distance Moved
 	int dropUpChance;
 	int dropHPChance;
 	int HP;
@@ -56,7 +56,7 @@ public abstract class Monster {
 		int roll = (int) ((Math.random() * 100) + 1);	
 
 		if(roll <= dropUpChance) {
-			Menu.G.Items.add(new ItemPickup(x +3 ,y +3 , Menu.G));
+			Menu.G.Items.add(new ItemPickup(x - Menu.G.xOffset ,y - Menu.G.yOffset , Menu.G));
 		} else if(roll <= dropUpChance + dropHPChance) {
 			Menu.G.HealthPickups.add(new HealthPickup(x ,y , Menu.G));
 		}

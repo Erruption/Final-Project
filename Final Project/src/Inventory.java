@@ -147,7 +147,7 @@ public class Inventory extends JFrame{
 		for(int x = 0; x < 10; x++){
 			
 			if(items[x] == 1){
-				UpDamage += 5;
+				UpDamage += 50;
 			} else if(items[x] == 2){
 				UpSpeed += 1;
 			} else if(items[x] == 3){
