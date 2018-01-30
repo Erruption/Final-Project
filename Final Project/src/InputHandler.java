@@ -24,20 +24,13 @@ public class InputHandler implements KeyListener {
 		}
 		
 		
-		/*
-		if(KeyCode == e.VK_LEFT) {
-			Game.sleft = true;
+	
+		if(KeyCode == e.VK_F) {
+			System.out.println("X Value: "+Monster.getMonsterX());
+			System.out.println("Y Value: "+Monster.getMonsterY());
+			Menu.G.Items.add(new ItemPickup(Monster.x,Monster.y, Menu.G));
 		}
-		if(KeyCode == e.VK_RIGHT) {
-			Game.sright = true;
-		}
-		if(KeyCode == e.VK_DOWN) {
-			Game.sdown = true;
-		}
-		if(KeyCode == e.VK_UP) {
-			Game.sup = true;
-		}
-		*/
+		
 		
 		
 		//pulling up the menu
