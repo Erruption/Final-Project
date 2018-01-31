@@ -84,7 +84,7 @@ public class InputHandler implements KeyListener {
 	*/
 		
 	}
-	
+	/* possible shooting if mouse pressed
 	  public void mousePressed(MouseEvent e) {
 		 Menu.G.shooting = true;
 		  }
@@ -96,5 +96,11 @@ public class InputHandler implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 
 	}
+*/
 
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

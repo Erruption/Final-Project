@@ -14,7 +14,7 @@ import java.awt.Graphics;
 public class Tile {
 	int x, y; //display x and y values
 	int oX, oY; //original x and y values
-	static int wallOffset = 360;
+	static int wallOffset = 360; //the wall offset from the sides of the tiles
 
 
 	Game game;

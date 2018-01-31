@@ -26,18 +26,18 @@ public class Player{
 		HP = 1000;
 
 		try {
-			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
+			play = ImageIO.read(new File("Resources/TileSet/front1.png")); //calls the players front
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	public void tick(Game game) {
+	public void tick(Game game) { // ticks the player
 		x = (game.getWidth() / 2 ) - 32;
 		y = (game.getHeight() / 2 ) - 32;
 
-		if(IFrames > 0) {
+		if(IFrames > 0) { //reduces the invincibility frames
 			IFrames--;
 		}
 	}
@@ -63,8 +63,8 @@ public class Player{
 	/**
 	 * Pauses game and creates new GameOver GUI
 	 */
-	public void kill() {
-
+	public void kill() {//kills the player 
+		
 		Menu.G.pause();
 		JOptionPane.showMessageDialog(Menu.G,"You are Dead");
 		Menu.M.setVisible(true);
@@ -87,13 +87,13 @@ public class Player{
 	 * player if HP is reduced to 0
 	 * @param Damage
 	 */
-	public void takeDamage(int Damage) {
+	public void takeDamage(int Damage) {//called when the player takes damage and sets invincibility timer
 		if(IFrames < 1) {
-			HP -= (Damage - Menu.I.getUpResistance());
+			HP -= (Damage - Menu.I.getUpResistance());//reduces by resistance 
 			IFrames = 40;
 		}
 
-		if(HP < 1) {
+		if(HP < 1) {//calls player death if health is below 1.
 			kill();
 		}
 	}

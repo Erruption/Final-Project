@@ -355,8 +355,8 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void spawnMonster() {
 
-		int monX;
-		int monY;
+		int monX; //mosnter x
+		int monY; //monster y
 
 		while(true) {
 			
@@ -381,7 +381,7 @@ public class Game extends Canvas implements Runnable{
 	 * initiates speed and if inputs are given will move
 	 */
 	private void moveMap() {
-		if(left) {
+		if(left) {//if moving, add the speeds
 			xOffset += spd;
 		}
 		if(right) {
@@ -394,7 +394,7 @@ public class Game extends Canvas implements Runnable{
 			yOffset += -spd;
 		}
 
-		if (xOffset >=  xMin) {
+		if (xOffset >=  xMin) { //sets the walls and forces player to stay within bounds
 			xOffset = xMin;
 		}
 		if (xOffset <= xMax) {
@@ -412,18 +412,18 @@ public class Game extends Canvas implements Runnable{
 	/**
 	 * initiates speed and if inputs are given will move
 	 */
-	private void checkShoot() {
-		shotTimer ++;
-		if (shotTimer > 100) {
+	private void checkShoot() { //shoots every 100 ticks
+		shotTimer ++; //adds one per tick
+		if (shotTimer > 100) {//if reached 101
 			shotTimer = 0;
 
-			int mouse_x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x;
-			int mouse_y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y;
+			int mouse_x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x; //gets the x mouse position
+			int mouse_y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y; //gets the y mouse position
 
 
 
 
-			Projectiles.add( new Projectile(mouse_x, mouse_y, null));
+			Projectiles.add( new Projectile(mouse_x, mouse_y, null)); //fires the projectile towards the mouse
 
 		}
 	}
@@ -433,13 +433,13 @@ public class Game extends Canvas implements Runnable{
 	/**
 	 * renders what the user will see using double or triple buffering 
 	 */
-	public void render() {
+	public void render() {//renders the buffering and everything 
 
 		BufferStrategy buffStrat= getBufferStrategy();
 
 
 
-		if (buffStrat == null){
+		if (buffStrat == null){ //if there is no buffer strategy it makes one
 
 			createBufferStrategy(2);//how many layers of buffering
 			return;
@@ -450,7 +450,7 @@ public class Game extends Canvas implements Runnable{
 
 		Graphics g = buffStrat.getDrawGraphics();
 
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), null); //draws the image
 
 		//checks if the tile will be on screen and only renders if it will
 
@@ -466,26 +466,26 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
-		player.render(g);
-		Tile.renderWalls(g);
-		if(Items.size() > 0){
+		player.render(g); //renders the player
+		Tile.renderWalls(g); //render the walls
+		if(Items.size() > 0){ //checks if there are any items
 
 			for(int x = 0; x < Items.size(); x++){
-				Items.get(x).render(g);
+				Items.get(x).render(g); //renders the items that exist
 			}
 
 		}
-		if(HealthPickups.size() > 0){
+		if(HealthPickups.size() > 0){//checks if there are any health pickups
 			for(int x = 0; x < HealthPickups.size(); x++){
 				HealthPickups.get(x).render(g);
 			}
 		}
-		if(Projectiles.size() > 0){
+		if(Projectiles.size() > 0){ //checks if there are any
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).render(g);
 			}
 		}
-		if(Runners.size() > 0){
+		if(Runners.size() > 0){ //checks if there are any
 			for(int x = 0; x < Runners.size(); x++){
 				Runners.get(x).render(g);
 			}
@@ -494,8 +494,8 @@ public class Game extends Canvas implements Runnable{
 
 
 
-		g.dispose();
-		buffStrat.show();
+		g.dispose();//gets rid of the screen
+		buffStrat.show();//shows the next frame
 
 
 	}
