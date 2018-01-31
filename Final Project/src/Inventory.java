@@ -13,8 +13,12 @@ public class Inventory extends JFrame{
 
 	//Stores Values representing items in inventory
 	private int[] items = new int[10];
+	//Stores the Icons for the items in the inventory
 	private JLabel[] itemLabels = new JLabel[10];
+	//Stores the 
 	private ImageIcon[] itemImages = new ImageIcon[4];
+	
+	//For calculated upgrade values
 	private int UpDamage;
 	private int UpSpeed;
 	private int UpResistance;

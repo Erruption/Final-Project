@@ -244,6 +244,23 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public void tick() {
 
+		if(Projectiles.size() > 0){
+			for(int X = 0; X < Projectiles.size(); X++){
+				if(Runners.size() > 0){
+					for(int z = 0; z < Runners.size(); z++){
+						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
+							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
+							Projectiles.remove(X);
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		
+		
+		checkShoot();
 
 		if(Projectiles.size() > 0){
 			for(int x = 0; x < Projectiles.size(); x++){
@@ -320,27 +337,14 @@ public class Game extends Canvas implements Runnable{
 
 
 
-	
 
-		if(Projectiles.size() > 0){
-			for(int X = 0; X < Projectiles.size(); X++){
-				if(Runners.size() > 0){
-					for(int z = 0; z < Runners.size(); z++){
-						if(Projectiles.get(X).collidesWithMonster(Runners.get(z).getBounds())) {
-							Runners.get(z).takeDamage(100 + Menu.I.getUpDamage(),z);
-							Projectiles.remove(X);
-							break;
-						}
-					}
-				}
-			}
-		}
 
+		
 	
 
 		moveMap();
 		player.tick(this);
-		checkShoot();
+		
 
 
 	}
