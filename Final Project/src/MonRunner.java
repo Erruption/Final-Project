@@ -26,13 +26,22 @@ public class MonRunner extends Monster {
 
 	}
 
+	/**
+	 * Calculates the monster's movement
+	 */
 	@Override
 	public void calcMove() {
+		
+		//Difference in X between player and monster
 		double deltaX = (Menu.G.player.x + Menu.G.player.play.getWidth()/2) - (this.x + this.MonsterIcon.getWidth()/2);
+		
+		//Difference in Y between player and monster
 		double deltaY = (Menu.G.player.y + Menu.G.player.play.getHeight()/2) - (this.y + this.MonsterIcon.getHeight()/2);
+		
+		//Calculates the hypotenuse
 		double hyp = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
 		
-
+		//Calculates the x and y components based on the speed and direction of movement.
 		mX += (int) monSpd * deltaX/hyp;
 		mY += (int) monSpd * deltaY/hyp;
 

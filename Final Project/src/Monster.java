@@ -25,7 +25,7 @@ public abstract class Monster {
 
 	Game game;
 
-	
+
 	public void tick(Game game) {
 		x = mX + oX + game.xOffset;
 		y = mY + oY + game.yOffset;
@@ -56,8 +56,10 @@ public abstract class Monster {
 	 */
 	public void dropLoot() {
 
+		//Rolls an integer
 		int roll = (int) ((Math.random() * 100) + 1);	
 
+		//Checks if integer is within drop chance
 		if(roll <= dropUpChance) {
 
 			Menu.G.Items.add(new ItemPickup(x - Menu.G.xOffset ,y - Menu.G.yOffset , Menu.G));
@@ -81,19 +83,20 @@ public abstract class Monster {
 			return false;
 		}	
 	}
-	
+
 	public Rectangle getBounds() {
 		return new Rectangle(x,y,48,64);
 	}
-	
-	
+
+
 	/**
 	 * Subtracts damage from HP, and calls kill if HP drops below 1
 	 * @param Damage
 	 */
 	public void takeDamage(int Damage, int index) {
-			HP -= Damage;
+		HP -= Damage;
 
+		//Checks if the monster is dead
 		if(HP < 1) {
 			dropLoot();
 			Menu.G.Runners.remove(index);
