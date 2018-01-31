@@ -23,21 +23,7 @@ public class InputHandler implements KeyListener {
 			Game.up = true;
 		}
 		
-		
-		/*
-		if(KeyCode == e.VK_LEFT) {
-			Game.sleft = true;
-		}
-		if(KeyCode == e.VK_RIGHT) {
-			Game.sright = true;
-		}
-		if(KeyCode == e.VK_DOWN) {
-			Game.sdown = true;
-		}
-		if(KeyCode == e.VK_UP) {
-			Game.sup = true;
-		}
-		*/
+
 		
 		
 		//pulling up the menu

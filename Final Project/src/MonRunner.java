@@ -16,6 +16,7 @@ public class MonRunner extends Monster {
 		dropUpChance = 20;
 		dropHPChance = 30;
 		
+		
 		try {
 			MonsterIcon = ImageIO.read(new File("Resources/MonsterFiles/Monster-Runner.png"));
 		} catch (IOException e) {
@@ -32,8 +33,8 @@ public class MonRunner extends Monster {
 		double hyp = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
 		
 
-		mX += (int) 4 * deltaX/hyp;
-		mY += (int) 4 * deltaY/hyp;
+		mX += (int) monSpd * deltaX/hyp;
+		mY += (int) monSpd * deltaY/hyp;
 
 	}
 
