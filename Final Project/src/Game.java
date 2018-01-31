@@ -296,7 +296,7 @@ public class Game extends Canvas implements Runnable{
 			for(int x = 0; x < HealthPickups.size(); x++){
 				HealthPickups.get(x).tick(this);
 				if(HealthPickups.get(x).collidesWithItem(player.getBounds())){
-					if(player.HP < 900) {
+					if(player.HP < 800) {
 						player.HP += 200;
 					} else {
 						player.HP = 1000;
