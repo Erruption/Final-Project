@@ -222,7 +222,7 @@ public class Game extends Canvas implements Runnable{
 		 * gets the pic for projectile and buffers it
 		 */
 		try {
-			fire = ImageIO.read(new File("Resources/Fireball.jpg"));
+			fire = ImageIO.read(new File("Resources/Fireball.png"));
 		} catch (IOException e) {
 			fire = null;
 			e.printStackTrace();
