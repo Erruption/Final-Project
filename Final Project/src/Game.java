@@ -17,7 +17,7 @@ import java.awt.event.KeyListener;
  * Author Lewis Zettler
  * Reference to ImeratorRyan
  * The visual implementation and tick system of the game
- * 
+ * https://github.com/Erruption/Final-Project
  *
  */
 public class Game extends Canvas implements Runnable{
@@ -74,7 +74,6 @@ public class Game extends Canvas implements Runnable{
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
-	public static boolean sleft, sright, sup, sdown;
     final int basespd = 5;
 	int spd = 5;
 
@@ -365,7 +364,6 @@ public class Game extends Canvas implements Runnable{
 			
 			//Checks to make sure the location is off screen
 			if((monX > WIDTH || monX < -47 || monY > HEIGHT || monY < -63)){
-				//if( monX < -47) {
 				if(Runners.size() < 20) {
 					//creates a new monster if there are less than 20 already in the game
 					Runners.add(new MonRunner(monX-xOffset,monY-yOffset,this));

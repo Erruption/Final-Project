@@ -10,7 +10,7 @@ public class InputHandler implements KeyListener {
 		                    
 //basic controls for game
 		if(KeyCode == e.VK_A) {
-			//Menu.G.player.takeDamage(100);
+
 			Game.left = true;
 		}
 		if(KeyCode == e.VK_D) {
@@ -33,17 +33,7 @@ public class InputHandler implements KeyListener {
 			
 		}
 		
-/* slows down timer notably
-		//toggle the grid 
-		if(KeyCode == e.VK_E) {
-			if (Game.togGrid == true){
-				Game.togGrid = false;
-			}else{
-				Game.togGrid = true;
-			}
-		}
-	*/	
-				
+	
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -66,22 +56,7 @@ public class InputHandler implements KeyListener {
 			
 		}
 		
-		
-		
-/*
-		if(KeyCode == e.VK_LEFT) {
-			Game.sleft = false;
-		}
-		if (KeyCode == e.VK_RIGHT) {
-			Game.sright = false;
-		}
-		if(KeyCode == e.VK_DOWN) {
-			Game.sdown = false;
-		}
-		if(KeyCode == e.VK_UP) {
-			Game.sup = false;
-		}
-	*/
+
 		
 	}
 	/* possible shooting if mouse pressed
