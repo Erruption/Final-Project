@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 
 
+
 import javax.swing.*;
 public class Menu extends JFrame{
 	
@@ -14,11 +15,13 @@ public class Menu extends JFrame{
 	public static Menu M;
 	public static Inventory I;
 	
-	public Menu () {
-		//Setting the background (*not working atm because need good background in resource folder)
-		JLabel background = new JLabel(new ImageIcon("map.png"));
-		//general setting up of JFrame
+	public Menu  () {
+		super();
+		//Setting the background 
+		JLabel background = new JLabel(new ImageIcon("Resources/menustuff.png"));
 		setContentPane(background);
+		//general setting up of JFrame
+		
 		setTitle("Game");
 		setBounds(40,40,400,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
