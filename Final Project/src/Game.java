@@ -121,9 +121,9 @@ public class Game extends Canvas implements Runnable{
 		//spawnMonster();
 		//Runners.add(new MonRunner(1200,400,this));
 
-		running = true;
+		running = true; //starts the game
 		thread = new Thread(this);
-		thread.start();
+		thread.start(); 
 
 	}
 
@@ -144,7 +144,6 @@ public class Game extends Canvas implements Runnable{
 	public synchronized static void stop() {
 
 		running = false;
-		//Make this close the game
 		Menu.G.setEnabled(false);
 		Menu.G.setVisible(false);
 		Menu.G = null;
@@ -197,7 +196,7 @@ public class Game extends Canvas implements Runnable{
 	/**
 	 * initiates the screen placements by rendering all tiles on screen
 	 */
-	private void init() {
+	private void init() {//calls all the images and initializes the tile array
 
 		/**
 		 * gets the tile resource and buffers it
@@ -242,8 +241,8 @@ public class Game extends Canvas implements Runnable{
 	 * Ticks game system runs all actions at the same time
 	 * 
 	 */
-	public void tick() {
-
+	public void tick() { //ticks the entire game
+//Checks for collisions andand removes the projectiles
 		if(Projectiles.size() > 0){
 			for(int X = 0; X < Projectiles.size(); X++){
 				if(Runners.size() > 0){
@@ -260,9 +259,9 @@ public class Game extends Canvas implements Runnable{
 
 		
 		
-		checkShoot();
+		checkShoot(); //checks if shooting, will always be on
 
-		if(Projectiles.size() > 0){
+		if(Projectiles.size() > 0){//ticks the projectiles and checks if it has travelled too far
 			for(int x = 0; x < Projectiles.size(); x++){
 				Projectiles.get(x).tick(this);
 
@@ -271,7 +270,7 @@ public class Game extends Canvas implements Runnable{
 				}
 			}
 		}
-		
+		//ticks all of the tiles
 		for (int x = 0 ; x < tileWidth; x++) {
 			for (int y = 0 ; y< tileHeight; y++) { 
 				tileArray[x][y].tick(this);
@@ -342,14 +341,18 @@ public class Game extends Canvas implements Runnable{
 		
 	
 
-		moveMap();
-		player.tick(this);
+		moveMap(); //calls movement
+		player.tick(this);//ticks the player invincibility frames and placement, 
 		
 
 
 	}
 
 
+	
+	/**
+	 * monster gets spawned when called
+	 */
 	private void spawnMonster() {
 
 		int monX;

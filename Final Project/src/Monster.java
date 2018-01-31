@@ -21,7 +21,7 @@ public abstract class Monster {
 	int HP;
 	int MaxHP;
 	boolean Alive = false;
-	int monSpd = (int) (Math.random()*3)+3;
+	int monSpd;
 
 	Game game;
 

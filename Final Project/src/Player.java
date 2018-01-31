@@ -21,67 +21,67 @@ public class Player{
 		this.x = x;
 		this.y = y;
 		this.game = game;
-
-		 MaxHP = 1000;
-		 HP = 1000;
 		
+		MaxHP = 1000;
+		HP = 1000;
+
 		try {
 			play = ImageIO.read(new File("Resources/TileSet/front1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 	public void tick(Game game) {
 		x = (game.getWidth() / 2 ) - 32;
 		y = (game.getHeight() / 2 ) - 32;
-		
+
 		if(IFrames > 0) {
 			IFrames--;
 		}
 	}
 
-	
+
 	/**
 	 * renders Player and Healthbar
 	 * @param g
 	 */
 	public void render(Graphics g) {
-		
+
 		//Drawing Player
 		g.drawImage( play,  x, y, null);
-		
+
 		//Drawing HP Bar
 		g.fillRect( x,  y -11, 64, 10);
 		g.setColor(Color.GREEN);
 		g.fillRect(x + 1, y- 10, (int )(62 * HP/1000), 8);
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Pauses game and creates new GameOver GUI
 	 */
 	public void kill() {
-		
+
 		Menu.G.pause();
 		JOptionPane.showMessageDialog(Menu.G,"You are Dead");
 		Menu.M.setVisible(true);
 		Menu.I.dispose();
 		Menu.G.stop();
 	}
-	
-	
+
+
 	/**
 	 *  Returns the bounds of Player
 	 * @return Rectangle
 	 */
 	public Rectangle getBounds(){
-			return new Rectangle(x,y,play.getWidth(),play.getHeight());
+		return new Rectangle(x,y,play.getWidth(),play.getHeight());
 	}
 
-	
+
 	/**
 	 * Subtracts damage taken off of HP after accounting for resistance. Kills the
 	 * player if HP is reduced to 0
@@ -97,6 +97,6 @@ public class Player{
 			kill();
 		}
 	}
-	
+
 
 }

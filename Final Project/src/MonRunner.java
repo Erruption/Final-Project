@@ -15,7 +15,7 @@ public class MonRunner extends Monster {
 		HP = 600;
 		dropUpChance = 20;
 		dropHPChance = 30;
-		
+		monSpd = (int) (Math.random()*3)+3;
 		
 		try {
 			MonsterIcon = ImageIO.read(new File("Resources/MonsterFiles/Monster-Runner.png"));
