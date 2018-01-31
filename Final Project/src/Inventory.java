@@ -15,7 +15,7 @@ public class Inventory extends JFrame{
 	private int[] items = new int[10];
 	//Stores the Icons for the items in the inventory
 	private JLabel[] itemLabels = new JLabel[10];
-	//Stores the 
+	//Stores the Images for the icons
 	private ImageIcon[] itemImages = new ImageIcon[4];
 	
 	//For calculated upgrade values
@@ -28,6 +28,7 @@ public class Inventory extends JFrame{
 
 		super();
 
+		//Background
 		JLabel background = new JLabel(new ImageIcon("Resources/ItemFiles/inventory-grid.png"));
 		setContentPane(background);
 		Container Pane = getContentPane();
@@ -142,12 +143,16 @@ public class Inventory extends JFrame{
 		}
 	}
 
+	/**
+	 * calculates the upgrade values based on the number of upgrade items
+	 */
 	public void refreshUpgrades(){
 		
 		UpDamage = 0;
 		UpSpeed = 0;
 		UpResistance = 0;
 		
+		//Checks each spot in the inventory
 		for(int x = 0; x < 10; x++){
 			
 			if(items[x] == 1){
