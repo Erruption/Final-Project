@@ -26,7 +26,7 @@ public class Projectile {
  * @param y	y pos of mouse in canvas
  * @param game
  */
-	Projectile(int x, int y, Game game) {
+	Projectile(int x, int y, int pVX, int pVY, Game game) {
 
 		double deltaX = -((Menu.G.player.x + Menu.G.player.play.getWidth()/2) - x); // gets the direction X of the mouse
 		double deltaY = -((Menu.G.player.y + Menu.G.player.play.getHeight()/2) - y);// gets the direction Y of the mouse
@@ -35,8 +35,8 @@ public class Projectile {
 		
 		
 		
-		velX = (int) (10 * (deltaX/hyp)); //gets the x component of the vector
-		velY = (int) (10 * (deltaY/hyp)); //gets the y component of the vector
+		velX = ((int) (10 * (deltaX/hyp)) + pVX); //gets the x component of the vector
+		velY = ((int) (10 * (deltaY/hyp)) + pVY); //gets the y component of the vector
 		
 
 

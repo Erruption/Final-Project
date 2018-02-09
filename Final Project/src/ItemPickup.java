@@ -17,9 +17,8 @@ public class ItemPickup {
 	int y;
 	int oX;
 	int oY;
-	BufferedImage Damage;
-	BufferedImage Speed;
-	BufferedImage Resistance;
+	BufferedImage Damage, Speed, Resistance, AttackSpd;
+	
 	Game game;
 
 	/**
@@ -32,13 +31,15 @@ public class ItemPickup {
 			Damage = ImageIO.read(new File("Resources/ItemFiles/Item-1-Damage.png"));
 			Speed = ImageIO.read(new File("Resources/ItemFiles/Item-2-Speed.png"));
 			Resistance =  ImageIO.read(new File("Resources/ItemFiles/Item-3-Resistance.png"));
+			AttackSpd = ImageIO.read(new File("Resources/ItemFiles/Item-4-AttackSpd.png"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		//Decides the type of item
-		type = (int) ((Math.random() * 3) + 1);
+		type = (int) ((Math.random() * 4) + 1);
 		this.oX = x;
 		this.oY = y;
 		this.game = game;
@@ -56,8 +57,10 @@ public class ItemPickup {
 				UpgradeIcon = Damage;
 			} else if(type == 2){
 				UpgradeIcon = Speed;
-			} else {
+			} else if(type == 3) {
 				UpgradeIcon = Resistance;
+			} else if (type == 4) {
+				UpgradeIcon = AttackSpd;
 			}
 
 

@@ -10,7 +10,6 @@ public class InputHandler implements KeyListener {
 		                    
 //basic controls for game
 		if(KeyCode == e.VK_A) {
-
 			Game.left = true;
 		}
 		if(KeyCode == e.VK_D) {
