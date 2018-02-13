@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable{
 	Player player = new Player(0, 0, this);
 
 
-	
+
 
 
 	JFrame frame;
@@ -51,7 +51,7 @@ public class Game extends Canvas implements Runnable{
 	public final int HEIGHT = 900;
 	public final Dimension gamDim = new Dimension(WIDTH, HEIGHT); 
 	Thread thread;
-	
+
 	BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	//dim in tiles
@@ -74,9 +74,11 @@ public class Game extends Canvas implements Runnable{
 
 	//Key Controls
 	public static boolean left, right, up, down, shooting;
-    final int basespd = 5;
-	int spd = 5;
-
+	final int basespd = 5;
+	int maxspd = 5;
+	int accel = 1;
+	int shootDelay = 10;
+	int accelD, accelU, accelL, accelR;
 
 	int xOffset = -((WIDTH + tileWidth *16)/2);
 	int yOffset = -((HEIGHT + tileHeight *16)/2);
@@ -86,6 +88,8 @@ public class Game extends Canvas implements Runnable{
 	int yMin = 0;
 	int yMax = - tileHeight * 32 + 900;
 
+
+	int pVX , pVY;
 	int shotTimer = 0;
 	int z = 0;
 
@@ -241,7 +245,7 @@ public class Game extends Canvas implements Runnable{
 	 * 
 	 */
 	public void tick() { //ticks the entire game
-//Checks for collisions andand removes the projectiles
+		//Checks for collisions andand removes the projectiles
 		if(Projectiles.size() > 0){
 			for(int X = 0; X < Projectiles.size(); X++){
 				if(Runners.size() > 0){
@@ -256,8 +260,8 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
-		
-		
+
+
 		checkShoot(); //checks if shooting, will always be on
 
 		if(Projectiles.size() > 0){//ticks the projectiles and checks if it has travelled too far
@@ -304,7 +308,7 @@ public class Game extends Canvas implements Runnable{
 			}
 		}
 
-		
+
 		//Spawns the bois
 		MonTimer -= 3;
 		if(MonTimer <= 0) {
@@ -314,12 +318,12 @@ public class Game extends Canvas implements Runnable{
 			if(MonTimerMax >= 100) {
 				MonTimerMax -= 50;
 			}
-			
+
 			MonTimer = MonTimerMax;
 		}
 
 
-		
+
 		//Monster collision and movement
 		if(Runners.size() > 0){
 			for(int x = 0; x < Runners.size(); x++){
@@ -337,18 +341,18 @@ public class Game extends Canvas implements Runnable{
 
 
 
-		
-	
+
+
 
 		moveMap(); //calls movement
 		player.tick(this);//ticks the player invincibility frames and placement, 
-		
+
 
 
 	}
 
 
-	
+
 	/**
 	 * monster gets spawned when called
 	 */
@@ -358,10 +362,10 @@ public class Game extends Canvas implements Runnable{
 		int monY; //monster y
 
 		while(true) {
-			
+
 			monX = (int)(Math.random() * (WIDTH + 400)) - 200;//Generates an x
 			monY = (int)(Math.random() * (HEIGHT + 400)) - 200;//Generates a y
-			
+
 			//Checks to make sure the location is off screen
 			if((monX > WIDTH || monX < -47 || monY > HEIGHT || monY < -63)){
 				if(Runners.size() < 20) {
@@ -369,8 +373,8 @@ public class Game extends Canvas implements Runnable{
 					Runners.add(new MonRunner(monX-xOffset,monY-yOffset,this));
 				}
 				break;
-				}
-				
+			}
+
 		}
 	}
 
@@ -380,16 +384,41 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void moveMap() {
 		if(left) {//if moving, add the speeds
-			xOffset += spd;
+			if (accelL < maxspd){
+				accelL += accel;
+			}
+			xOffset += accelL;
+		}else if(accelL < 0) {
+			accelL -= accel;
+			xOffset += accelL;
 		}
-		if(right) {
-			xOffset += -spd;
+		if(right) {//if moving, add the speeds
+			if (accelR > -maxspd){
+				accelR -= accel;
+			}
+			xOffset += accelR;
+		}else if(accelR > 0) {
+			accelR += accel;
+			xOffset -= accelR;
 		}
-		if(up) {
-			yOffset += spd;
+		if(up) {//if moving, add the speeds
+			if (accelU < maxspd){
+				accelU += accel;
+			}
+			yOffset += accelU;
+		}else if(accelU > 0) {
+			accelU -= accel;
+			yOffset += accelU;
 		}
-		if(down) {
-			yOffset += -spd;
+
+		if(down) {//if moving, add the speeds
+			if (accelD > -maxspd){
+				accelD -= accel;
+			}
+			yOffset += accelD;
+		}else if(accelD < 0) {
+			accelD += accel;
+			yOffset += accelD;
 		}
 
 		if (xOffset >=  xMin) { //sets the walls and forces player to stay within bounds
@@ -412,17 +441,21 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void checkShoot() { //shoots every 100 ticks
 		shotTimer ++; //adds one per tick
-		if (shotTimer > 100) {//if reached 101
+		if (shotTimer > shootDelay) {//if reached 101
 			shotTimer = 0;
 
 			int mouse_x = MouseInfo.getPointerInfo().getLocation().x - this.getLocationOnScreen().x; //gets the x mouse position
 			int mouse_y = MouseInfo.getPointerInfo().getLocation().y - this.getLocationOnScreen().y; //gets the y mouse position
 
 
+			
+				pVY = (int) (- 0.5 * (accelU + accelD));
+				pVX = (int) (- 0.5 * (accelL + accelR));
 
-
-			Projectiles.add( new Projectile(mouse_x, mouse_y, null)); //fires the projectile towards the mouse
-
+			Projectiles.add( new Projectile(mouse_x, mouse_y, pVX, pVY, null)); //fires the projectile towards the mouse
+			
+			pVY = 0;
+			pVX = 0;
 		}
 	}
 
